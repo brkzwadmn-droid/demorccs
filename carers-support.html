@@ -2,6 +2,9 @@
 <html lang="en-US" class="no-js">
 
 <head>
+<link rel="stylesheet" data-theme-base="1" href="/wp-content/themes/avivo/css/theme.min.css">
+<link rel="stylesheet" data-theme-base="1" href="/wp-content/themes/avivo/css/nav.min.css">
+
 	<meta name="theme-color" content="#ffffff">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<style>
@@ -174,6 +177,31 @@ fbq('track','PageView');
 		<link rel="stylesheet" href="/wp-content/themes/avivo/css/nav.min.css">
 	</noscript>
 
+<script data-css-rehydrate="1">
+(function(){
+  function run(){
+    var seen={};
+    function add(href){
+      if(!href) return;
+      href = href.replace(/&amp;/g,'&').replace(/['"\s]+$/,'').trim();
+      if(!/\.css(\?|$)/.test(href)) return;
+      var key = href.split('?')[0];
+      if(seen[key]) return; seen[key]=1;
+      var l=document.createElement('link');
+      l.rel='stylesheet'; l.href=href;
+      document.head.appendChild(l);
+    }
+    var ns=document.querySelectorAll('noscript');
+    for(var i=0;i<ns.length;i++){
+      var html=ns[i].textContent||'';
+      var re=/(?:data-savepage-href|href)\s*=\s*['"]([^'"]*\.css[^'"\s]*)['"]/g, m;
+      while((m=re.exec(html))){ add(m[1]); }
+    }
+  }
+  if(document.readyState!=='loading'){run();}
+  else{document.addEventListener('DOMContentLoaded',run);}
+})();
+</script>
 </head>
 
 <body class="wp-singular page-template-default page page-id-2109 page-parent wp-embed-responsive wp-theme-avivo menu-light with-top-nav group-blog"  menu-style="light">
