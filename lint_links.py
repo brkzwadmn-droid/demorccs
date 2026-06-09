@@ -13,6 +13,7 @@ EXTERNAL_OK = (
     "https://www.carergateway.gov.au",
     "https://www.myagedcare.gov.au",
     "https://www.lifeline.org.au",
+    "https://www.ndiscommission.gov.au",
     "https://www.clue.com.au",
     "https://duckduckgo.com",
     "https://www.googletagmanager.com",
