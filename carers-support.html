@@ -2523,5 +2523,45 @@ document.addEventListener('DOMContentLoaded', function() {
     storeUtmParameters();
     populateHiddenFields();
 });
-</script><style id="rcc-logo-fix">.navbar-brand__logo-simple,.navbar-brand__logo,.mobile-brand__logo{height:40px!important;width:auto!important;max-width:260px!important;object-fit:contain!important;}@media(max-width:980px){.navbar-brand__logo-simple,.navbar-brand__logo,.mobile-brand__logo{height:34px!important;}}</style><style id="rcc-footer-logo-hide">.footer__logo{display:none!important}</style><style id="rcc-fix-header-actions">.mn-light .navbar__actions .btn-row{flex-wrap:nowrap!important;align-items:center!important}.mn-light .navbar__actions .btn-row>*{white-space:nowrap!important;flex:0 0 auto!important}</style></body>
+</script><style id="rcc-logo-fix">.navbar-brand__logo-simple,.navbar-brand__logo,.mobile-brand__logo{height:40px!important;width:auto!important;max-width:260px!important;object-fit:contain!important;}@media(max-width:980px){.navbar-brand__logo-simple,.navbar-brand__logo,.mobile-brand__logo{height:34px!important;}}</style><style id="rcc-footer-logo-hide">.footer__logo{display:none!important}</style><style id="rcc-fix-header-actions">.mn-light .navbar__actions .btn-row{flex-wrap:nowrap!important;align-items:center!important}.mn-light .navbar__actions .btn-row>*{white-space:nowrap!important;flex:0 0 auto!important}</style><script id="rcc-more-toggle">
+(function(){
+  function setOpen(dd, open){
+    var m=dd.querySelector('.cd-dropdown__menu'); if(!m) return;
+    var b=dd.querySelector('.cd-dropdown__toggle');
+    if(open){
+      m.style.setProperty('visibility','visible','important');
+      m.style.setProperty('opacity','1','important');
+      m.style.setProperty('transform','none','important');
+      m.style.setProperty('pointer-events','auto','important');
+    } else {
+      m.style.setProperty('visibility','hidden','important');
+      m.style.setProperty('opacity','0','important');
+      m.style.setProperty('pointer-events','none','important');
+    }
+    dd.setAttribute('data-rcc-open', open ? '1' : '0');
+    if(b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function init(){
+    document.querySelectorAll('.cd-dropdown').forEach(function(dd){
+      var b=dd.querySelector('.cd-dropdown__toggle');
+      if(!b || b.dataset.rccBound) return;
+      b.dataset.rccBound='1';
+      b.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        setOpen(dd, dd.getAttribute('data-rcc-open') !== '1');
+      }, true);
+    });
+    document.addEventListener('click', function(e){
+      document.querySelectorAll('.cd-dropdown[data-rcc-open="1"]').forEach(function(dd){
+        if(!dd.contains(e.target)) setOpen(dd, false);
+      });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape') document.querySelectorAll('.cd-dropdown[data-rcc-open="1"]').forEach(function(dd){ setOpen(dd, false); });
+    });
+  }
+  if(document.readyState!=='loading') init();
+  else document.addEventListener('DOMContentLoaded', init);
+})();
+</script></body>
 </html>
