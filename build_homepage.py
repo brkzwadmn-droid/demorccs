@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Generate the new flagship homepage (self-contained index.html).
-Design: modern, warm, professional NDIS provider. SIL-prominent.
-Photos hot-linked from avivo.org.au as approved placeholders."""
+"""Flagship homepage v2 — crafted/art-directed edition.
+Borrowed techniques: Avivo (brush-stroke draw-on around hero photo, organic
+blob masks, curved colour-block dividers, ticker), PIYC (stats, vacancy
+cards, EOI framing), Neami/Livit (hand-drawn doodles, sparkles, tilted
+stickers, editorial rotation). Copy is the compliance-reviewed wording."""
 
 LOGO = open('/tmp/rehoboth_logo.txt').read().strip()
 FAVICON = open('/tmp/rehoboth_favicon.txt').read().strip()
@@ -9,12 +11,11 @@ NDIS_BADGE = open('/tmp/indis_badge.txt').read().strip()
 
 IMG = {
  'hero':      'https://www.avivo.org.au/wp-content/uploads/2025/11/EDITED-RiftPhotography-AvivoDay1and2-144_min.webp',
+ 'hero2':     'https://www.avivo.org.au/wp-content/uploads/2025/11/home-intro_min.webp',
  'sil_main':  'https://www.avivo.org.au/wp-content/uploads/2025/10/avivo-images-disability-paul-kenny-at-home-perth5.jpg',
  'sil_small': 'https://www.avivo.org.au/wp-content/uploads/2025/11/home-about-avivo_min.webp',
  'who':       'https://www.avivo.org.au/wp-content/uploads/2025/10/avivo-images-disability-becky-and-horses.jpg',
  'mission':   'https://www.avivo.org.au/wp-content/uploads/2026/02/RiftPhotography-AvivoDay3-2-scaled.jpg',
- 'nurse':     'https://www.avivo.org.au/wp-content/uploads/2025/09/specialist-services-nursing_min.webp',
- 'workforce': 'https://www.avivo.org.au/wp-content/uploads/2025/11/avivo-images-disability-jess-jas-at-the-office-perth2.jpg',
  'p1':        'https://www.avivo.org.au/wp-content/uploads/2025/11/iStock-1367774041-scaled.jpg',
  'p2':        'https://www.avivo.org.au/wp-content/uploads/2025/11/iStock-2190214515-scaled.jpg',
  'p3':        'https://www.avivo.org.au/wp-content/uploads/2025/10/avivo_2019-07_090.jpg',
@@ -26,7 +27,6 @@ def icon(inner, stroke='#0e3a40'):
 
 IC = {
  'home':  '<path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
- 'person':'<circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>',
  'users': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
  'heart': '<path d="M19 14c1.5-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
  'car':   '<path d="M5 13 6.5 8.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13"/><path d="M5 13h14v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="15.5" r=".6"/><circle cx="16.5" cy="15.5" r=".6"/>',
@@ -44,11 +44,42 @@ IC = {
  'arrow': '<path d="M5 12h14M13 6l6 6-6 6"/>',
  'star':  '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
  'brief': '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
- 'building':'<rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/>',
+ 'person':'<circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>',
 }
 
+# ───────────────── decorative doodles ─────────────────
+SPARK = '<svg aria-hidden="true" focusable="false" class="spark" viewBox="0 0 24 24"><path d="M12 1c.8 6.2 4.8 10.2 11 11-6.2.8-10.2 4.8-11 11-.8-6.2-4.8-10.2-11-11C7.2 11.2 11.2 7.2 12 1Z" fill="currentColor"/></svg>'
+SPARK_S = SPARK.replace('class="spark"', 'class="spark s2"')
+SPARK_M = SPARK.replace('class="spark"', 'class="spark s3"')
+SQUIG = '<svg aria-hidden="true" focusable="false" viewBox="0 0 96 20" fill="none"><path d="M3 13 C11 3 19 3 27 13 C35 23 43 23 51 13 C59 3 67 3 75 13 C83 23 91 23 93 13" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>'
+ARC_DOTS = '<svg aria-hidden="true" focusable="false" viewBox="0 0 120 60" fill="none"><path d="M6 54 C30 10 90 10 114 54" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.5 14"/></svg>'
+DOODLE_ARROW = '<svg aria-hidden="true" focusable="false" viewBox="0 0 110 70" fill="none"><path d="M6 8 C30 44 62 56 96 50" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M84 42 C89 46 93 48 98 50 C93 53 89 56 86 61" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+# Avivo's actual hero brush path (from the captured site), redrawn as a draw-on stroke
+BRUSH = ('<svg aria-hidden="true" focusable="false" class="brush" viewBox="0 0 720 560" fill="none" preserveAspectRatio="xMidYMid meet">'
+         '<path pathLength="1" d="M166.751 520C127.072 413.486 37.8348 172.377 103.274 104.23C235.814 -33.7929 308.796 462.039 411.963 481.08C481.963 494 596.033 424.382 448.511 245.716C332.082 104.707 484.048 -5.82593 595.963 189C707.877 383.826 720 467.431 720 467.431" '
+         'stroke="#c4d600" stroke-width="30" stroke-linecap="round"/></svg>')
+SCRIBBLE = ('<svg aria-hidden="true" focusable="false" class="scribble" viewBox="0 0 220 70" fill="none" preserveAspectRatio="none">'
+            '<path pathLength="1" d="M28 38 C56 14 178 8 196 26 C212 41 150 60 84 58 C36 57 18 46 34 32 C56 14 166 12 196 24" '
+            'stroke="#a9c81e" stroke-width="6" stroke-linecap="round"/></svg>')
+QUOTE = '<svg aria-hidden="true" focusable="false" class="bigquote" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a3 3 0 0 0-3 3v7h7v-7H7c0-1.7 1.3-3 3-3zM21 7h-4a3 3 0 0 0-3 3v7h7v-7h-3c0-1.7 1.3-3 3-3z"/></svg>'
+
+def curve(prev_bg, next_fill, variant=1, flip=False):
+    paths = {
+     1: 'M0,64 C240,96 480,8 760,40 C1040,72 1280,88 1440,40 L1440,96 L0,96 Z',
+     2: 'M0,48 C320,96 640,0 900,48 C1160,92 1320,72 1440,48 L1440,96 L0,96 Z',
+     3: 'M0,80 C360,16 720,96 1080,40 C1260,16 1380,40 1440,64 L1440,96 L0,96 Z',
+    }
+    fl = ' style="transform:scaleX(-1)"' if flip else ''
+    return (f'<div class="curve" aria-hidden="true" style="background:{prev_bg}"><svg{fl} viewBox="0 0 1440 96" preserveAspectRatio="none">'
+            f'<path d="{paths[variant]}" fill="{next_fill}"/></svg></div>')
+
 def chk(t):
-    return f'<li><span class="tick">{icon(IC["check"], "#7a9a0e")}</span>{t}</li>'
+    return f'<li><span class="tick">{icon(IC["check"], "#5d7610")}</span>{t}</li>'
+
+TICKER_ITEMS = ['Supported Independent Living', 'Complex &amp; high-intensity care', 'Community nursing',
+ 'Positive behaviour support', 'Respite &amp; STA', 'Psychosocial recovery', 'Travel &amp; transport',
+ 'In-home support', 'Community participation', 'Support coordination']
+ticker_half = ''.join(f'<span>{t}</span><i class="tsep">&#10022;</i>' for t in TICKER_ITEMS)
 
 SERVICES = [
  ('accommodation.html', 'home', 'Supported Independent Living', 'Safe, welcoming SIL homes with 24/7 trained support, helping you live independently, your way.'),
@@ -61,9 +92,8 @@ SERVICES = [
  ('transport-services.html', 'car', 'Travel &amp; transport', 'Our own fleet gets you safely to appointments, work, study and community activities.'),
  ('care-management-services.html', 'compass', 'Support coordination', 'We help you understand your plan, connect with providers and get the most from your funding.'),
 ]
-
 svc_cards = "".join(
- f'<a class="svc reveal" style="--d:{i*0.05:.2f}s" href="{href}">'
+ f'<a class="svc t{i%3+1} reveal" style="--d:{i*0.05:.2f}s" href="{href}">'
  f'<span class="svc-ic">{icon(IC[ic])}</span><h3>{t}</h3><p>{d}</p>'
  f'<span class="more">Learn more {icon(IC["arrow"], "currentColor")}</span></a>'
  for i, (href, ic, t, d) in enumerate(SERVICES))
@@ -84,7 +114,7 @@ home_cards = "".join(
 WHO = ['Complex care needs', 'Psychosocial disability', 'Physical disability', 'Behaviour support needs',
        'Autism', 'Intellectual disability', 'Acquired brain injury', 'Spinal cord injury',
        'Younger onset dementia', 'Degenerative conditions', 'Sensory disability', 'Co-occurring mental health needs']
-who_pills = "".join(f'<span class="pill reveal" style="--d:{i*0.03:.2f}s">{w}</span>' for i, w in enumerate(WHO))
+who_pills = "".join(f'<span class="pill p{i%3+1} reveal" style="--d:{i*0.03:.2f}s">{w}</span>' for i, w in enumerate(WHO))
 
 WHY = [
  ('shield', 'Registered &amp; audited', 'A registered NDIS provider, independently audited against the NDIS Practice Standards.'),
@@ -92,7 +122,7 @@ WHY = [
  ('heart', 'Clinical expertise', 'Registered nurses lead our clinical care, with access to medical practitioners for complex needs.'),
  ('users', 'Complex-care trained team', 'Support workers trained in high-intensity supports, positive behaviour support and manual handling.'),
  ('car', 'Our own fleet', 'A fleet of our own vehicles, so transport never holds you back.'),
- ('clock', '24/7 on-call response', 'Real people answer around the clock, because support needs don’t keep office hours.'),
+ ('clock', '24/7 on-call response', 'Real people answer around the clock, because support needs don&#8217;t keep office hours.'),
 ]
 why_cards = "".join(
  f'<div class="why reveal" style="--d:{i*0.06:.2f}s"><span class="why-ic">{icon(IC[ic], "#dff066")}</span>'
@@ -105,7 +135,7 @@ STEPS = [
  ('Grow together', 'We review regularly, adjust as life changes, and celebrate every win with you.'),
 ]
 steps_html = "".join(
- f'<div class="step reveal" style="--d:{i*0.08:.2f}s"><span class="stepnum">{i+1}</span>'
+ f'<div class="step reveal" style="--d:{i*0.08:.2f}s" data-n="0{i+1}"><span class="stepnum">{i+1}</span>'
  f'<h3>{t}</h3><p>{d}</p></div>' for i, (t, d) in enumerate(STEPS))
 
 page = f'''<!DOCTYPE html>
@@ -114,11 +144,11 @@ page = f'''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rehoboth | Registered NDIS Provider | SIL, Complex Care &amp; Disability Support in VIC, NSW &amp; QLD</title>
-<meta name="description" content="Rehoboth is a registered NDIS provider with over 10 years of experience. Supported Independent Living homes, complex care, community nursing and disability support across Victoria, New South Wales and Queensland. Call 1300 853 095.">
+<meta name="description" content="Rehoboth is a registered NDIS provider whose team brings 10+ years of experience. Supported Independent Living homes, complex care, community nursing and disability support across Victoria, New South Wales and Queensland. Call 1300 853 095.">
 <link rel="icon" href="{FAVICON}">
 <link rel="canonical" href="index.html">
 <meta property="og:title" content="Rehoboth | Registered NDIS Provider | VIC, NSW &amp; QLD">
-<meta property="og:description" content="Supported Independent Living, complex care and disability support from a registered NDIS provider with 10+ years of experience.">
+<meta property="og:description" content="Supported Independent Living, complex care and disability support from a registered NDIS provider with an experienced team.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -127,26 +157,46 @@ page = f'''<!DOCTYPE html>
   --teal:#0e3a40; --teal-deep:#092b30; --teal-soft:#11464d;
   --lime:#a9c81e; --lime-bright:#c4d600; --lime-pale:#eef3da; --lime-glow:#dff066; --olive:#5d7610;
   --cream:#faf8f2; --sand:#f3efe4; --ink:#15333a; --mut:#5c6f6d; --white:#fff;
-  --r-lg:22px; --r-md:16px; --shadow:0 20px 50px rgba(14,58,64,.12);
+  --r-lg:22px; --r-md:16px; --shadow:0 20px 50px rgba(14,58,64,.13);
   --max:1180px;
 }}
 * {{ margin:0; padding:0; box-sizing:border-box; }}
 .skip-link {{ position:absolute; left:-9999px; top:0; background:var(--teal); color:#fff; padding:12px 22px; z-index:2000; border-radius:0 0 10px 0; font-weight:700; }}
 .skip-link:focus {{ left:0; }}
 html {{ scroll-behavior:smooth; }}
-body {{ font-family:'Montserrat',system-ui,sans-serif; color:var(--ink); background:var(--cream); line-height:1.65; font-size:16.5px; }}
+body {{ font-family:'Montserrat',system-ui,sans-serif; color:var(--ink); background:var(--cream); line-height:1.65; font-size:16.5px; overflow-x:hidden; }}
 img {{ max-width:100%; display:block; }}
 a {{ color:inherit; text-decoration:none; }}
 ul {{ list-style:none; }}
-.wrap {{ max-width:var(--max); margin:0 auto; padding:0 24px; }}
+.wrap {{ max-width:var(--max); margin:0 auto; padding:0 24px; position:relative; }}
 h1,h2,h3 {{ line-height:1.18; color:var(--teal); font-weight:800; letter-spacing:-.01em; }}
 .eyebrow {{ display:inline-flex; align-items:center; gap:10px; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--olive); margin-bottom:14px; }}
 .eyebrow::before {{ content:""; width:34px; height:3px; border-radius:2px; background:var(--lime-bright); }}
 .hand {{ font-family:'Caveat',cursive; font-size:30px; color:var(--olive); font-weight:700; display:block; margin-bottom:6px; }}
 .lead {{ color:var(--mut); font-size:18px; max-width:640px; }}
-section {{ padding:96px 0; }}
+section {{ padding:96px 0; position:relative; }}
 .center {{ text-align:center; }}
 .center .lead {{ margin:0 auto; }}
+.curve {{ line-height:0; margin-bottom:-1px; }}
+.curve svg {{ width:100%; height:72px; display:block; }}
+@media (max-width:700px) {{ .curve svg {{ height:42px; }} }}
+
+/* decorations */
+.deco {{ position:absolute; pointer-events:none; color:var(--lime); z-index:2; }}
+.deco.teal {{ color:var(--teal); }}
+.deco.glow {{ color:var(--lime-glow); }}
+.spark {{ width:26px; height:26px; animation:twinkle 3.2s ease-in-out infinite; display:block; }}
+.spark.s2 {{ width:16px; height:16px; animation-delay:1.1s; }}
+.spark.s3 {{ width:20px; height:20px; animation-delay:2s; }}
+@keyframes twinkle {{ 0%,100% {{ transform:scale(.55) rotate(0deg); opacity:.45; }} 50% {{ transform:scale(1) rotate(18deg); opacity:1; }} }}
+@keyframes floaty {{ 0%,100% {{ transform:translateY(0); }} 50% {{ transform:translateY(-13px); }} }}
+@keyframes kenburns {{ from {{ transform:scale(1); }} to {{ transform:scale(1.09); }} }}
+@keyframes bob {{ 0%,100% {{ transform:translateY(0) rotate(var(--rot,0deg)); }} 50% {{ transform:translateY(-9px) rotate(var(--rot,0deg)); }} }}
+.brush path, .scribble path {{ stroke-dasharray:1; stroke-dashoffset:1; }}
+html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; }}
+.js .drawn .brush path {{ animation:draw 1.7s .45s ease forwards; }}
+.js .drawn .scribble path {{ animation:draw 1.2s 1.1s ease forwards; }}
+@keyframes draw {{ to {{ stroke-dashoffset:0; }} }}
 
 /* buttons */
 .btn {{ display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:16px; border-radius:999px; padding:16px 30px; transition:.25s; cursor:pointer; border:2px solid transparent; }}
@@ -160,9 +210,12 @@ section {{ padding:96px 0; }}
 .btn-white:hover {{ transform:translateY(-2px); }}
 .btn-teal {{ background:var(--teal); color:#fff; }}
 .btn-teal:hover {{ background:var(--teal-soft); transform:translateY(-2px); }}
+.btn-pulse {{ position:relative; }}
+.btn-pulse::after {{ content:""; position:absolute; inset:-2px; border-radius:999px; border:2px solid #fff; animation:pulse 2.2s ease-out infinite; }}
+@keyframes pulse {{ 0% {{ transform:scale(1); opacity:.9; }} 70% {{ transform:scale(1.16); opacity:0; }} 100% {{ opacity:0; }} }}
 
 /* top bar */
-.topbar {{ background:var(--teal-deep); color:#cfe0d8; font-size:13.5px; font-weight:600; }}
+.topbar {{ background:var(--teal-deep); color:#cfe0d8; font-size:13.5px; font-weight:600; position:relative; z-index:901; }}
 .topbar .wrap {{ display:flex; justify-content:space-between; align-items:center; min-height:42px; gap:14px; }}
 .topbar a {{ color:#fff; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }}
 .topbar svg {{ width:15px; height:15px; }}
@@ -189,59 +242,76 @@ section {{ padding:96px 0; }}
 @media (max-width:1020px) {{ .nav nav.primary, .nav .nav-cta {{ display:none; }} .burger {{ display:block; }} }}
 
 /* hero */
-.hero {{ position:relative; overflow:hidden; padding:84px 0 110px; }}
+.hero {{ position:relative; overflow:visible; padding:78px 0 96px; }}
 .hero::before {{ content:""; position:absolute; right:-340px; top:-280px; width:880px; height:880px; border-radius:50%;
   background:radial-gradient(circle at 35% 35%, rgba(196,214,0,.20), rgba(196,214,0,0) 60%); animation:floaty 9s ease-in-out infinite; }}
-.hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; position:relative; }}
-.hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; }}
+.hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }}
+.hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; position:relative; }}
 .hero h1 em {{ font-style:normal; color:var(--olive); position:relative; white-space:nowrap; }}
-.hero h1 em svg {{ position:absolute; left:0; bottom:-7px; width:100%; height:12px; }}
+.hero h1 em .scribble {{ position:absolute; left:-7%; top:-16%; width:114%; height:136%; }}
 .hero .lead {{ margin-bottom:34px; }}
 .hero-cta {{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px; }}
 .hero-trust {{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; color:var(--mut); font-size:14px; font-weight:600; }}
 .hero-trust span {{ display:inline-flex; gap:8px; align-items:center; }}
 .hero-trust svg {{ width:17px; height:17px; }}
-.hero-visual {{ position:relative; }}
+.hero-visual {{ position:relative; z-index:1; }}
 .hero-blob {{ position:relative; width:100%; aspect-ratio:.94; }}
-.hero-blob .ph {{ position:absolute; inset:0; clip-path:url(#blobclip); overflow:hidden; }}
+.hero-blob .ph {{ position:absolute; inset:0; clip-path:url(#blobclip); overflow:hidden; z-index:2; }}
 .hero-blob .ph img {{ width:100%; height:100%; object-fit:cover; animation:kenburns 18s ease-in-out infinite alternate; }}
+.hero-blob .brush {{ position:absolute; inset:-7% -9%; width:118%; height:114%; z-index:1; opacity:.95; }}
 .hero-blob .accent {{ position:absolute; width:120px; height:120px; border-radius:46% 54% 60% 40%/50% 45% 55% 50%; background:var(--lime-bright); right:-16px; bottom:34px; z-index:-1; animation:floaty 7s ease-in-out infinite; }}
-.hero-blob .accent2 {{ position:absolute; width:74px; height:74px; border-radius:50% 50% 44% 56%/48% 56% 44% 52%; background:var(--teal); left:-10px; top:48px; z-index:-1; animation:floaty 8s 1s ease-in-out infinite; }}
-.float-card {{ position:absolute; background:#fff; border-radius:16px; box-shadow:var(--shadow); padding:14px 20px; display:flex; gap:12px; align-items:center; font-size:14px; font-weight:700; color:var(--teal); animation:floaty 6s ease-in-out infinite; }}
+.hero-mini {{ position:absolute; left:-34px; bottom:-30px; width:168px; height:168px; border-radius:50%; overflow:hidden; border:7px solid var(--cream); box-shadow:var(--shadow); z-index:3; animation:floaty 8s 1s ease-in-out infinite; }}
+.hero-mini img {{ width:100%; height:100%; object-fit:cover; }}
+.float-card {{ position:absolute; background:#fff; border-radius:16px; box-shadow:var(--shadow); padding:14px 20px; display:flex; gap:12px; align-items:center; font-size:14px; font-weight:700; color:var(--teal); animation:floaty 6s ease-in-out infinite; z-index:4; }}
 .float-card svg {{ width:22px; height:22px; flex:none; }}
 .float-card small {{ display:block; font-weight:600; color:var(--mut); font-size:12px; }}
-.fc1 {{ left:-26px; bottom:14%; }}
-.fc2 {{ right:-8px; top:8%; animation-delay:1.4s; }}
-@keyframes floaty {{ 0%,100% {{ transform:translateY(0); }} 50% {{ transform:translateY(-13px); }} }}
-@keyframes kenburns {{ from {{ transform:scale(1); }} to {{ transform:scale(1.09); }} }}
-@media (max-width:920px) {{ .hero .wrap {{ grid-template-columns:1fr; }} .hero-visual {{ max-width:520px; margin:0 auto; }} }}
+.fc1 {{ right:-10px; bottom:10%; animation-delay:.6s; }}
+.fc2 {{ right:-8px; top:6%; animation-delay:1.4s; }}
+.hero .deco-squig {{ left:-10px; top:2px; width:84px; transform:rotate(-12deg); }}
+.hero .deco-arc {{ right:6%; bottom:-12px; width:110px; }}
+.hero .hs1 {{ right:-4px; top:-22px; }}
+.hero .hs2 {{ right:-32px; top:10px; }}
+@media (max-width:920px) {{ .hero .wrap {{ grid-template-columns:1fr; }} .hero-visual {{ max-width:520px; margin:0 auto; }} .hero-mini {{ left:-8px; }} }}
 
-/* stats band */
-.stats {{ background:var(--teal); color:#fff; padding:54px 0; position:relative; overflow:hidden; }}
-.stats::after {{ content:""; position:absolute; left:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; background:rgba(196,214,0,.10); }}
-.stats .wrap {{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center; position:relative; }}
-.stat b {{ font-size:clamp(34px,3.4vw,46px); font-weight:800; color:var(--lime-glow); display:block; line-height:1; }}
-.stat span {{ font-size:14.5px; font-weight:600; color:#cfe0d8; display:block; margin-top:9px; }}
+/* ticker */
+.ticker {{ background:var(--lime-bright); transform:rotate(-1.1deg) scale(1.03); position:relative; z-index:5; overflow:hidden; padding:15px 0; box-shadow:0 12px 30px rgba(169,200,30,.3); }}
+.ticker .track {{ display:flex; align-items:center; width:max-content; animation:marquee 38s linear infinite; }}
+.ticker:hover .track {{ animation-play-state:paused; }}
+.ticker span {{ font-weight:800; color:var(--teal); font-size:15.5px; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }}
+.ticker .tsep {{ color:var(--teal); font-style:normal; margin:0 22px; opacity:.65; }}
+@keyframes marquee {{ from {{ transform:translateX(0); }} to {{ transform:translateX(-50%); }} }}
+
+/* stats */
+.stats {{ background:var(--teal); color:#fff; padding:92px 0 64px; position:relative; overflow:hidden; margin-top:-30px; }}
+.stats::after {{ content:""; position:absolute; left:-120px; bottom:-180px; width:420px; height:420px; border-radius:50%; border:38px solid rgba(196,214,0,.12); }}
+.stats::before {{ content:""; position:absolute; right:-80px; top:-110px; width:280px; height:280px; border-radius:50%; border:26px solid rgba(255,255,255,.05); }}
+.stats .wrap {{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center; }}
+.stat b {{ font-size:clamp(34px,3.4vw,48px); font-weight:800; color:var(--lime-glow); display:block; line-height:1; }}
+.stat > span {{ font-size:14.5px; font-weight:600; color:#cfe0d8; display:block; margin-top:9px; }}
+.stat b span {{ font-size:inherit; color:inherit; display:inline; margin:0; }}
 @media (max-width:760px) {{ .stats .wrap {{ grid-template-columns:repeat(2,1fr); }} }}
 
-/* SIL flagship */
-.sil {{ background:var(--cream); }}
-.sil-top {{ display:grid; grid-template-columns:1.02fr .98fr; gap:64px; align-items:center; margin-bottom:74px; }}
+/* SIL */
+.sil {{ background:var(--cream); padding-top:104px; }}
+.sil-top {{ display:grid; grid-template-columns:1.02fr .98fr; gap:64px; align-items:center; margin-bottom:88px; }}
 .sil-top h2 {{ font-size:clamp(30px,3.4vw,44px); margin-bottom:20px; }}
 .sil-list {{ margin:26px 0 32px; display:grid; gap:13px; }}
 .sil-list li {{ display:flex; gap:12px; align-items:flex-start; font-weight:600; color:var(--ink); }}
 .sil-list .tick {{ flex:none; width:24px; height:24px; border-radius:50%; background:var(--lime-pale); display:flex; align-items:center; justify-content:center; margin-top:2px; }}
 .sil-list .tick svg {{ width:13px; height:13px; }}
 .sil-visual {{ position:relative; }}
-.sil-visual .main {{ border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:1.08; }}
-.sil-visual .main img {{ width:100%; height:100%; object-fit:cover; transition:transform .6s; }}
-.sil-visual:hover .main img {{ transform:scale(1.05); }}
-.sil-visual .mini {{ position:absolute; left:-40px; bottom:-40px; width:46%; border-radius:18px; overflow:hidden; border:6px solid var(--cream); box-shadow:var(--shadow); aspect-ratio:1.25; }}
+.sil-visual::before {{ content:""; position:absolute; right:-46px; top:-42px; width:240px; height:240px; border-radius:43% 57% 52% 48%/49% 44% 56% 51%; background:var(--lime-pale); z-index:0; }}
+.sil-visual .main {{ border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:1.08; position:relative; z-index:1; transform:rotate(1.2deg); transition:transform .4s; }}
+.sil-visual:hover .main {{ transform:rotate(0); }}
+.sil-visual .main img {{ width:100%; height:100%; object-fit:cover; }}
+.sil-visual .mini {{ position:absolute; left:-40px; bottom:-40px; width:46%; border-radius:18px; overflow:hidden; border:6px solid var(--cream); box-shadow:var(--shadow); aspect-ratio:1.25; z-index:2; transform:rotate(-2.4deg); }}
 .sil-visual .mini img {{ width:100%; height:100%; object-fit:cover; }}
-.sil-visual .chip {{ position:absolute; top:18px; right:18px; background:var(--lime-bright); color:var(--teal); font-weight:800; font-size:13.5px; border-radius:999px; padding:9px 17px; box-shadow:0 8px 20px rgba(0,0,0,.18); }}
+.sil-visual .sticker {{ position:absolute; top:-26px; right:16px; z-index:3; background:var(--teal); color:var(--lime-glow); font-weight:700; font-family:'Caveat',cursive; font-size:23px; border-radius:999px; padding:12px 22px; transform:rotate(7deg); box-shadow:0 10px 24px rgba(9,43,48,.3); animation:bob 5.5s ease-in-out infinite; --rot:7deg; }}
 .hgrid {{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }}
-.hcard {{ background:#fff; border-radius:var(--r-lg); overflow:hidden; box-shadow:0 8px 26px rgba(14,58,64,.08); transition:transform .25s, box-shadow .25s; display:flex; flex-direction:column; }}
-.hcard:hover {{ transform:translateY(-7px); box-shadow:var(--shadow); }}
+.hcard {{ background:#fff; border-radius:var(--r-lg); overflow:hidden; box-shadow:0 8px 26px rgba(14,58,64,.08); transition:transform .3s, box-shadow .3s; display:flex; flex-direction:column; }}
+.hcard:nth-child(odd) {{ transform:rotate(-.7deg); }}
+.hcard:nth-child(even) {{ transform:rotate(.6deg); }}
+.hcard:hover {{ transform:rotate(0) translateY(-8px); box-shadow:var(--shadow); }}
 .himg {{ position:relative; aspect-ratio:1.5; overflow:hidden; }}
 .himg img {{ width:100%; height:100%; object-fit:cover; transition:transform .5s; }}
 .hcard:hover .himg img {{ transform:scale(1.07); }}
@@ -253,33 +323,47 @@ section {{ padding:96px 0; }}
 .more svg {{ width:17px; height:17px; transition:transform .25s; }}
 .hcard:hover .more svg, .svc:hover .more svg {{ transform:translateX(5px); }}
 .hcard:hover .more, .svc:hover .more {{ color:var(--olive); }}
-.sil-ctas {{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:44px; }}
-@media (max-width:920px) {{ .sil-top {{ grid-template-columns:1fr; }} .sil-visual {{ max-width:540px; margin:0 auto; }} .sil-visual .mini {{ left:-8px; }} .hgrid {{ grid-template-columns:1fr; max-width:480px; margin:0 auto; }} }}
+.sil-ctas {{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:48px; }}
+.sil .deco-spark1 {{ left:2%; top:7%; }}
+.sil .deco-spark2 {{ right:4%; top:52%; }}
+.sil .deco-arrow2 {{ width:90px; color:var(--lime); position:absolute; right:8%; top:-12px; transform:scaleX(-1) rotate(-6deg); }}
+@media (max-width:920px) {{ .sil-top {{ grid-template-columns:1fr; }} .sil-visual {{ max-width:540px; margin:30px auto 0; }} .sil-visual .mini {{ left:-8px; }} .hgrid {{ grid-template-columns:1fr; max-width:480px; margin:0 auto; }} .hcard {{ transform:none !important; }} .sil .deco-arrow2 {{ display:none; }} }}
 
 /* services */
-.services {{ background:var(--sand); border-radius:60px 60px 0 0; }}
+.services {{ background:var(--sand); }}
 .svc-grid {{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:54px; }}
-.svc {{ background:#fff; border-radius:var(--r-md); padding:32px 30px; display:flex; flex-direction:column; gap:10px; border:1px solid rgba(14,58,64,.05); transition:transform .25s, box-shadow .25s; }}
-.svc:hover {{ transform:translateY(-6px); box-shadow:var(--shadow); }}
-.svc-ic {{ width:56px; height:56px; border-radius:15px; background:var(--lime-pale); display:flex; align-items:center; justify-content:center; margin-bottom:8px; }}
+.svc {{ border-radius:var(--r-md); padding:32px 30px; display:flex; flex-direction:column; gap:10px; border:1px solid rgba(14,58,64,.05); transition:transform .3s, box-shadow .3s; position:relative; background:#fff; }}
+.svc.t2 {{ background:var(--lime-pale); }}
+.svc:nth-child(3n+1) {{ transform:rotate(-.5deg); }}
+.svc:nth-child(3n+2) {{ transform:rotate(.45deg); }}
+.svc:hover {{ transform:rotate(0) translateY(-7px); box-shadow:var(--shadow); }}
+.svc-ic {{ width:56px; height:56px; border-radius:16px 18px 16px 4px; background:var(--lime-bright); display:flex; align-items:center; justify-content:center; margin-bottom:8px; box-shadow:0 6px 16px rgba(169,200,30,.35); }}
+.svc.t2 .svc-ic {{ background:#fff; }}
 .svc-ic svg {{ width:28px; height:28px; }}
 .svc h3 {{ font-size:19px; }}
 .svc p {{ color:var(--mut); font-size:14.5px; flex:1; }}
+.services .deco-squig2 {{ right:5%; top:74px; width:88px; transform:rotate(8deg); }}
 @media (max-width:920px) {{ .svc-grid {{ grid-template-columns:repeat(2,1fr); }} }}
-@media (max-width:620px) {{ .svc-grid {{ grid-template-columns:1fr; }} }}
+@media (max-width:620px) {{ .svc-grid {{ grid-template-columns:1fr; }} .svc {{ transform:none !important; }} }}
 
-/* who we support */
+/* who */
+.who {{ background:var(--cream); }}
 .who .wrap {{ display:grid; grid-template-columns:1fr .9fr; gap:64px; align-items:center; }}
-.who-img {{ border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:.92; position:relative; }}
+.who-imgwrap {{ position:relative; }}
+.who-img {{ border-radius:54% 46% 52% 48%/48% 54% 46% 52%; overflow:hidden; box-shadow:var(--shadow); aspect-ratio:.92; }}
 .who-img img {{ width:100%; height:100%; object-fit:cover; }}
-.who-img::after {{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(9,43,48,.35), transparent 45%); }}
+.who-imgwrap .sp1 {{ position:absolute; right:-4px; top:6%; color:var(--lime-bright); }}
+.who-imgwrap .sp2 {{ position:absolute; left:-12px; bottom:14%; color:var(--lime); }}
 .pills {{ display:flex; flex-wrap:wrap; gap:11px; margin-top:26px; }}
-.pill {{ background:#fff; border:1.5px solid #e3e7d2; border-radius:999px; padding:10px 19px; font-weight:600; font-size:14.5px; color:var(--ink); transition:.25s; }}
-.pill:hover {{ border-color:var(--lime); background:var(--lime-pale); }}
-@media (max-width:920px) {{ .who .wrap {{ grid-template-columns:1fr; }} .who-img {{ max-width:520px; margin:0 auto; order:2; }} }}
+.pill {{ border-radius:999px; padding:10px 19px; font-weight:600; font-size:14.5px; color:var(--ink); transition:.25s; border:1.5px solid transparent; }}
+.pill.p1 {{ background:#fff; border-color:#e3e7d2; }}
+.pill.p2 {{ background:var(--lime-pale); }}
+.pill.p3 {{ background:var(--sand); }}
+.pill:hover {{ border-color:var(--lime); background:var(--lime-pale); transform:translateY(-2px); }}
+@media (max-width:920px) {{ .who .wrap {{ grid-template-columns:1fr; }} .who-imgwrap {{ max-width:520px; margin:0 auto; order:2; }} }}
 
-/* why us */
-.why-s {{ background:var(--teal); color:#fff; border-radius:60px; margin:0 18px; }}
+/* why */
+.why-s {{ background:var(--teal); color:#fff; border-radius:60px; margin:0 18px; overflow:hidden; }}
 .why-s .eyebrow {{ color:var(--lime-glow); }}
 .why-s h2, .why-s h3 {{ color:#fff; }}
 .why-s .lead {{ color:#b9cfc6; }}
@@ -290,11 +374,18 @@ section {{ padding:96px 0; }}
 .why-ic svg {{ width:27px; height:27px; }}
 .why h3 {{ font-size:18.5px; margin-bottom:9px; }}
 .why p {{ color:#b9cfc6; font-size:14.5px; }}
+.why-s .deco-ring {{ position:absolute; right:-70px; bottom:-90px; width:260px; height:260px; border-radius:50%; border:30px solid rgba(196,214,0,.1); }}
 @media (max-width:920px) {{ .why-grid {{ grid-template-columns:1fr; }} .why-s {{ margin:0; border-radius:0; }} }}
 
 /* steps */
-.steps-grid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:58px; counter-reset:s; position:relative; }}
-.step {{ background:#fff; border-radius:var(--r-md); padding:34px 28px; box-shadow:0 8px 26px rgba(14,58,64,.07); position:relative; }}
+.steps {{ background:var(--cream); }}
+.steps-grid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:58px; position:relative; }}
+.steps-path {{ position:absolute; left:4%; right:4%; top:-34px; height:70px; color:var(--lime); display:none; }}
+@media (min-width:921px) {{ .steps-path {{ display:block; }} }}
+.steps-path svg {{ width:100%; height:100%; }}
+.step {{ background:#fff; border-radius:var(--r-md); padding:34px 28px; box-shadow:0 8px 26px rgba(14,58,64,.07); position:relative; overflow:hidden; }}
+.step::after {{ content:attr(data-n); position:absolute; right:10px; top:-12px; font-size:88px; font-weight:800; color:var(--lime-pale); line-height:1; z-index:0; }}
+.step > * {{ position:relative; z-index:1; }}
 .stepnum {{ width:46px; height:46px; border-radius:50%; background:var(--lime-bright); color:var(--teal); font-weight:800; font-size:19px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }}
 .step h3 {{ font-size:19px; margin-bottom:9px; }}
 .step p {{ color:var(--mut); font-size:14.5px; }}
@@ -313,29 +404,34 @@ section {{ padding:96px 0; }}
 .wc2 {{ background:var(--teal); color:#fff; }}
 .wc2 h3 {{ color:#fff; }}
 .wc2 p {{ color:#b9cfc6; }}
+.wc2::after {{ content:""; position:absolute; right:-60px; top:-60px; width:190px; height:190px; border-radius:50%; border:24px solid rgba(196,214,0,.14); }}
 .wc-ic {{ width:56px; height:56px; border-radius:15px; display:flex; align-items:center; justify-content:center; }}
 .wc1 .wc-ic {{ background:var(--lime-pale); }}
 .wc2 .wc-ic {{ background:rgba(196,214,0,.16); }}
 .wc-ic svg {{ width:28px; height:28px; }}
 @media (max-width:880px) {{ .work-grid {{ grid-template-columns:1fr; }} }}
 
-/* mission band */
-.mission {{ position:relative; min-height:520px; display:flex; align-items:center; overflow:hidden; }}
+/* mission */
+.mission {{ position:relative; min-height:540px; display:flex; align-items:center; overflow:hidden; padding:110px 0; }}
 .mission .bg {{ position:absolute; inset:0; }}
 .mission .bg img {{ width:100%; height:100%; object-fit:cover; }}
-.mission .bg::after {{ content:""; position:absolute; inset:0; background:linear-gradient(100deg, rgba(9,43,48,.88) 18%, rgba(9,43,48,.55) 55%, rgba(9,43,48,.25)); }}
-.mission .wrap {{ position:relative; color:#fff; max-width:var(--max); width:100%; }}
+.mission .bg::after {{ content:""; position:absolute; inset:0; background:linear-gradient(100deg, rgba(9,43,48,.9) 18%, rgba(9,43,48,.58) 55%, rgba(9,43,48,.25)); }}
+.mission .wrap {{ position:relative; color:#fff; width:100%; }}
 .mission .hand {{ color:var(--lime-glow); }}
-.mission h2 {{ color:#fff; font-size:clamp(28px,3.4vw,44px); max-width:660px; margin-bottom:18px; }}
-.mission p {{ color:#d6e4dd; max-width:560px; font-size:17px; margin-bottom:32px; }}
+.mission .bigquote {{ width:74px; height:74px; color:rgba(223,240,102,.35); margin-bottom:10px; display:block; }}
+.mission h2 {{ color:#fff; font-size:clamp(28px,3.4vw,44px); max-width:680px; margin-bottom:18px; }}
+.mission p {{ color:#d6e4dd; max-width:560px; font-size:17px; margin-bottom:14px; }}
+.mission .sig {{ font-family:'Caveat',cursive; font-size:30px; color:var(--lime-glow); display:block; margin-bottom:28px; }}
 
 /* cta */
-.cta {{ padding:96px 0; }}
+.cta {{ padding:96px 0; background:var(--cream); }}
 .cta-box {{ background:linear-gradient(115deg, var(--lime-bright), var(--lime)); border-radius:var(--r-lg); padding:64px 56px; display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center; position:relative; overflow:hidden; }}
 .cta-box::after {{ content:""; position:absolute; right:-90px; top:-90px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,.22); }}
 .cta-box h2 {{ font-size:clamp(26px,3vw,38px); }}
 .cta-box p {{ color:#3c4d10; font-weight:600; margin-top:10px; }}
-.cta-actions {{ display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; position:relative; }}
+.cta-actions {{ display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; position:relative; z-index:1; }}
+.cta-box .cs1 {{ position:absolute; left:46%; top:18px; color:#fff; }}
+.cta-box .cs2 {{ position:absolute; left:38%; bottom:22px; color:#fff; }}
 @media (max-width:880px) {{ .cta-box {{ grid-template-columns:1fr; text-align:center; }} .cta-actions {{ justify-content:center; }} }}
 
 /* footer */
@@ -359,24 +455,25 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
 @media (max-width:920px) {{ .f-main {{ grid-template-columns:1fr 1fr; }} }}
 @media (max-width:560px) {{ .f-main {{ grid-template-columns:1fr; }} .ack {{ flex-direction:column; }} }}
 
-/* reveal animation */
+/* reveal */
 .js .reveal {{ opacity:0; transform:translateY(28px); transition:opacity .7s ease var(--d,0s), transform .7s ease var(--d,0s); }}
 .js .reveal.in {{ opacity:1; transform:none; }}
 @media (prefers-reduced-motion:reduce) {{
   *, *::before, *::after {{ animation:none !important; transition:none !important; }}
   html {{ scroll-behavior:auto; }}
   .js .reveal {{ opacity:1; transform:none; }}
+  .brush path, .scribble path {{ stroke-dashoffset:0 !important; }}
 }}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <svg width="0" height="0" style="position:absolute"><defs>
 <clipPath id="blobclip" clipPathUnits="objectBoundingBox">
 <path d="M.512.012C.65.005.787.05.873.143c.084.09.115.222.112.353-.003.13-.04.258-.12.345C.785.93.664.974.54.99.41 1.006.266.99.17.906.075.823.03.69.013.557-.004.42.01.276.09.18.17.083.375.02.512.012Z"/>
 </clipPath></defs></svg>
 
-<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
   <div class="wrap">
     <div class="tb-l"><span>Registered NDIS Provider · <em>10+ years of experience</em> · VIC · NSW · QLD</span></div>
@@ -417,10 +514,14 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
 
 <main id="main">
 <section class="hero">
+  <span class="deco deco-squig" data-px="-.04">{SQUIG}</span>
   <div class="wrap">
-    <div class="hero-copy">
+    <div class="hero-copy drawn">
       <span class="hand">Support that feels like family.</span>
-      <h1>Live life <em>your way<svg viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M3 9 C60 2 140 2 197 8" fill="none" stroke="#c4d600" stroke-width="5" stroke-linecap="round"/></svg></em>, with a team that truly cares.</h1>
+      <h1>Live life <em>your way{SCRIBBLE}</em>, with a team that truly cares.
+        <span class="deco hs1">{SPARK}</span>
+        <span class="deco glow hs2">{SPARK_S}</span>
+      </h1>
       <p class="lead">Rehoboth is a registered NDIS provider whose team brings more than 10 years of experience, supporting people with disability across Victoria, New South Wales and Queensland; at home, in the community and in our supported independent living homes across Sydney and the Blue Mountains.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="accommodation.html#vacancies">Explore SIL homes {icon(IC['arrow'], 'currentColor')}</a>
@@ -432,16 +533,23 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
         <span>{icon(IC['heart'], '#5d7610')} Nurse-led clinical care</span>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual drawn">
       <div class="hero-blob">
-        <span class="ph"><img src="{IMG['hero']}" alt="A support worker and participant sharing a laugh at home" fetchpriority="high"></span>
-        <span class="accent"></span><span class="accent2"></span>
+        <span class="ph"><img src="{IMG['hero']}" alt="A support worker and participant enjoying time together (illustrative image)" fetchpriority="high"></span>
+        {BRUSH}
+        <span class="accent"></span>
       </div>
+      <div class="hero-mini"><img src="{IMG['hero2']}" alt="" loading="lazy"></div>
       <div class="float-card fc1">{icon(IC['home'], '#5d7610')}<span>SIL homes<small>Call for current vacancies</small></span></div>
       <div class="float-card fc2">{icon(IC['shield'], '#5d7610')}<span>Registered provider<small>Independently audited</small></span></div>
     </div>
   </div>
+  <span class="deco deco-arc" data-px=".05">{ARC_DOTS}</span>
 </section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">{ticker_half}{ticker_half}</div>
+</div>
 
 <div class="stats">
   <div class="wrap">
@@ -451,8 +559,11 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
     <div class="stat reveal" style="--d:.3s"><b><span data-count="3">3</span></b><span>States: VIC, NSW &amp; QLD</span></div>
   </div>
 </div>
+{curve('#0e3a40', '#faf8f2', 2)}
 
 <section class="sil" id="sil">
+  <span class="deco deco-spark1" data-px="-.03">{SPARK}</span>
+  <span class="deco glow deco-spark2" data-px=".04">{SPARK_M}</span>
   <div class="wrap">
     <div class="sil-top">
       <div class="reveal">
@@ -471,14 +582,15 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
         </div>
       </div>
       <div class="sil-visual reveal" style="--d:.15s">
-        <span class="chip">Ask about availability</span>
-        <div class="main"><img src="{IMG['sil_main']}" alt="A participant relaxing in his supported independent living home" loading="lazy"></div>
-        <div class="mini"><img src="{IMG['sil_small']}" alt="Support worker and participant cooking together" loading="lazy"></div>
+        <span class="sticker">7 homes across NSW</span>
+        <div class="main"><img src="{IMG['sil_main']}" alt="A person relaxing at home (illustrative image)" loading="lazy"></div>
+        <div class="mini"><img src="{IMG['sil_small']}" alt="" loading="lazy"></div>
       </div>
     </div>
-    <div class="center reveal">
+    <div class="center reveal" style="position:relative">
       <span class="eyebrow" style="justify-content:center">Featured homes</span>
       <h2 style="font-size:clamp(26px,3vw,38px)">Find your new home</h2>
+      <span class="deco deco-arrow2">{DOODLE_ARROW}</span>
     </div>
     <div class="hgrid" style="margin-top:44px">{home_cards}</div>
     <div class="sil-ctas reveal">
@@ -487,8 +599,10 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
     </div>
   </div>
 </section>
+{curve('#faf8f2', '#f3efe4', 1)}
 
 <section class="services" id="services">
+  <span class="deco deco-squig2 teal" data-px="-.03">{SQUIG}</span>
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow" style="justify-content:center">Our services</span>
@@ -498,10 +612,15 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
     <div class="svc-grid">{svc_cards}</div>
   </div>
 </section>
+{curve('#f3efe4', '#faf8f2', 3)}
 
 <section class="who">
   <div class="wrap">
-    <div class="who-img reveal"><img src="{IMG['who']}" alt="A participant smiling while patting a horse" loading="lazy"></div>
+    <div class="who-imgwrap reveal">
+      <div class="who-img"><img src="{IMG['who']}" alt="A person smiling while patting a horse (illustrative image)" loading="lazy"></div>
+      <span class="sp1">{SPARK}</span>
+      <span class="sp2">{SPARK_M}</span>
+    </div>
     <div class="reveal" style="--d:.12s">
       <span class="eyebrow">Who we support</span>
       <h2 style="font-size:clamp(28px,3.2vw,40px)">Every person. Every need. <br>Genuinely welcome.</h2>
@@ -512,6 +631,7 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
 </section>
 
 <section class="why-s">
+  <span class="deco-ring" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow" style="justify-content:center">The Rehoboth difference</span>
@@ -529,11 +649,15 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
       <h2 style="font-size:clamp(28px,3.2vw,42px)">Four simple steps</h2>
       <p class="lead" style="margin-top:16px">Starting with a new provider shouldn&#8217;t be hard. We make it simple, and we move at your pace.</p>
     </div>
-    <div class="steps-grid">{steps_html}</div>
+    <div class="steps-grid">
+      <span class="steps-path" aria-hidden="true"><svg viewBox="0 0 1100 70" fill="none" preserveAspectRatio="none"><path d="M10 58 C200 8 380 8 550 40 C720 70 900 64 1090 18" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 14"/></svg></span>
+      {steps_html}
+    </div>
   </div>
 </section>
+{curve('#faf8f2', '#f3efe4', 2, flip=True)}
 
-<section class="work" id="workforce">
+<section class="work" id="workforce" style="padding-top:70px">
   <div class="wrap">
     <div class="center reveal">
       <span class="eyebrow" style="justify-content:center">Workforce</span>
@@ -543,7 +667,7 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
       <div class="wcard wc1 reveal">
         <span class="wc-ic">{icon(IC['brief'])}</span>
         <h3>For providers: need qualified staff?</h3>
-        <p>We supply screened, trained and fully credentialed support workers and nurses to other providers, for one-off shifts, emergency cover or ongoing rosters. Workers we supply hold current NDIS Worker Screening clearances and the credentials required for their roles, backed by our 24/7 on-call team.</p>
+        <p>We supply screened, trained and credentialed support workers and nurses to other providers, for one-off shifts, emergency cover or ongoing rosters. Workers we supply hold current NDIS Worker Screening clearances and the credentials required for their roles, backed by our 24/7 on-call team.</p>
         <a class="btn btn-teal" href="contact.html">Request staff {icon(IC['arrow'], 'currentColor')}</a>
       </div>
       <div class="wcard wc2 reveal" style="--d:.12s">
@@ -559,29 +683,34 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
 <section class="mission">
   <div class="bg"><img src="{IMG['mission']}" alt="" loading="lazy"></div>
   <div class="wrap">
+    {QUOTE}
     <span class="hand reveal">Our promise to you</span>
     <h2 class="reveal" style="--d:.1s">A caring environment where people and families feel heard, supported and empowered to live life their way.</h2>
     <p class="reveal" style="--d:.2s">That&#8217;s not a slogan; it&#8217;s how our team has worked for more than ten years. Person-centred, culturally safe and always on your side.</p>
-    <a class="btn btn-lime reveal" style="--d:.3s" href="about.html">Our story {icon(IC['arrow'], 'currentColor')}</a>
+    <span class="sig reveal" style="--d:.25s">&#8212; The Rehoboth family</span>
+    <div><a class="btn btn-lime reveal" style="--d:.3s" href="about.html">Our story {icon(IC['arrow'], 'currentColor')}</a></div>
   </div>
 </section>
 
 <section class="cta" id="contact">
   <div class="wrap">
     <div class="cta-box reveal">
+      <span class="cs1">{SPARK}</span>
+      <span class="cs2">{SPARK_S}</span>
       <div>
         <h2>Ready when you are.</h2>
         <p>Call us for a friendly, no-obligation chat about your needs and how we can help. We welcome self-managed, plan-managed and NDIA-managed participants.</p>
       </div>
       <div class="cta-actions">
-        <a class="btn btn-white" href="tel:1300853095">{icon(IC['phone'], 'currentColor')} 1300 853 095</a>
+        <a class="btn btn-white btn-pulse" href="tel:1300853095">{icon(IC['phone'], 'currentColor')} 1300 853 095</a>
         <a class="btn btn-teal" href="contact.html">Send an enquiry</a>
       </div>
     </div>
   </div>
 </section>
-
 </main>
+{curve('#faf8f2', '#092b30', 1)}
+
 <footer>
   <div class="wrap">
     <div class="f-main">
@@ -632,7 +761,7 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
         <svg role="img" focusable="false" viewBox="0 0 60 40" aria-label="Aboriginal flag"><rect width="60" height="20" fill="#000"/><rect y="20" width="60" height="20" fill="#cc0000"/><circle cx="30" cy="20" r="9" fill="#ffce00"/></svg>
         <svg role="img" focusable="false" viewBox="0 0 60 40" aria-label="Torres Strait Islander flag"><rect width="60" height="40" fill="#0052b4"/><rect y="7" width="60" height="5" fill="#000"/><rect y="28" width="60" height="5" fill="#000"/><rect y="12" width="60" height="16" fill="#009543"/><path d="M30 13l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6z" fill="#fff"/></svg>
       </div>
-      <p>Rehoboth acknowledges the Traditional Custodians of the lands on which we live and work across Australia, and pays its respects to Elders past and present. We celebrate the diversity of all people, and welcome every participant, family member and team member regardless of culture, faith, sexuality, gender identity or ability.</p>
+      <p>Rehoboth acknowledges the Traditional Custodians of the lands on which we live and work across Australia, and pays its respects to Elders past and present. We celebrate the diversity of all people, and welcome every participant, family member and team member regardless of culture, faith, sexuality, gender identity or disability.</p>
     </div>
     <div class="f-bottom">
       <span>&copy; 2026 Rehoboth Comprehensive Care Services &middot; Community Regain Pty Ltd &middot; ABN 12 657 939 896</span>
@@ -645,19 +774,15 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
 (function() {{
   document.documentElement.classList.add('js');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // sticky nav shadow
   var nav = document.getElementById('nav');
   addEventListener('scroll', function() {{ nav.classList.toggle('scrolled', scrollY > 8); }}, {{passive:true}});
-  // mobile menu
   var b = document.getElementById('burger'), m = document.getElementById('mmenu');
   b.addEventListener('click', function() {{ var open = m.classList.toggle('open'); b.setAttribute('aria-expanded', open); }});
   addEventListener('keydown', function(e) {{ if (e.key === 'Escape' && m.classList.contains('open')) {{ m.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); b.focus(); }} }});
-  // reveal on scroll
   var io = new IntersectionObserver(function(es) {{
     es.forEach(function(e) {{ if (e.isIntersecting) {{ e.target.classList.add('in'); io.unobserve(e.target); }} }});
   }}, {{threshold:.14}});
   document.querySelectorAll('.reveal').forEach(function(el) {{ io.observe(el); }});
-  // counters
   var cio = new IntersectionObserver(function(es) {{
     es.forEach(function(e) {{
       if (!e.isIntersecting) return;
@@ -675,10 +800,25 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
     }});
   }}, {{threshold:.6}});
   document.querySelectorAll('[data-count]').forEach(function(el) {{ cio.observe(el); }});
+  if (!reduce) {{
+    var px = [].slice.call(document.querySelectorAll('[data-px]'));
+    var ticking = false;
+    addEventListener('scroll', function() {{
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function() {{
+        px.forEach(function(el) {{
+          var f = parseFloat(el.dataset.px) || 0;
+          var r = el.getBoundingClientRect();
+          el.style.marginTop = ((r.top - innerHeight/2) * f) + 'px';
+        }});
+        ticking = false;
+      }});
+    }}, {{passive:true}});
+  }}
 }})();
 </script>
 </body>
 </html>'''
 
 open('/Users/brookw/demorccs/index.html', 'w', encoding='utf-8').write(page)
-print(f"index.html written: {len(page)//1024} KB")
+print(f"index.html v2 written: {len(page)//1024} KB")
