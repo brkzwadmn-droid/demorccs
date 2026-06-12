@@ -294,7 +294,7 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }}
 .hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; position:relative; }}
 .hero h1 em {{ font-style:normal; color:var(--olive); position:relative; white-space:nowrap; }}
-.hero h1 em .scribble {{ position:absolute; left:-15%; top:-26%; width:131%; height:147%; transform:rotate(-.8deg); }}
+.hero h1 em .scribble {{ position:absolute; left:-9%; top:-22%; width:122%; height:140%; transform:rotate(-.8deg); }}
 .hero .lead {{ margin-bottom:34px; }}
 .hero-cta {{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px; }}
 .hero-trust {{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; color:var(--mut); font-size:14px; font-weight:600; }}
@@ -303,9 +303,10 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero-visual {{ position:relative; z-index:1; }}
 .hero-blob {{ position:relative; width:100%; aspect-ratio:.94; }}
 .hero-blob .ph {{ position:absolute; inset:0; clip-path:url(#blobclip); overflow:hidden; z-index:2; background:radial-gradient(circle at 62% 24%, #f7fae9 0%, #edf3d6 55%, #e4ecc4 100%); }}
-.hero-blob .ph img {{ width:100%; height:100%; object-fit:cover; object-position:center 22%; mix-blend-mode:multiply; animation:kenburns 22s ease-in-out infinite alternate; }}
-.hero-blob .brush {{ position:absolute; inset:-7% -9%; width:118%; height:114%; z-index:1; opacity:.95; }}
-.hero-blob .accent {{ position:absolute; width:120px; height:120px; border-radius:46% 54% 60% 40%/50% 45% 55% 50%; background:var(--lime-bright); right:-16px; bottom:34px; z-index:-1; animation:floaty 7s ease-in-out infinite; }}
+.hero-blob .ph img {{ width:100%; height:100%; object-fit:cover; object-position:center 30%; mix-blend-mode:multiply; animation:kenburns 22s ease-in-out infinite alternate; }}
+.hero-blob .brush {{ position:absolute; inset:-6% -6%; width:112%; height:112%; z-index:1; opacity:.85; }}
+.hero-blob::after {{ content:""; position:absolute; width:130px; height:130px; border-radius:46% 54% 60% 40%/50% 45% 55% 50%; background:var(--lime-bright); right:10px; bottom:6px; z-index:1; opacity:.95; animation:floaty 7s ease-in-out infinite; }}
+.hero-visual::before {{ content:""; position:absolute; inset:-7% -9% 6% -9%; border-radius:48% 52% 55% 45%/52% 48% 52% 48%; background:radial-gradient(circle at 62% 30%, rgba(196,214,0,.17), rgba(196,214,0,.02) 72%); z-index:-2; }}
 .hero-mini {{ position:absolute; left:-34px; bottom:-30px; width:168px; height:168px; border-radius:50%; overflow:hidden; border:7px solid var(--cream); box-shadow:var(--shadow); z-index:3; animation:floaty 8s 1s ease-in-out infinite; }}
 .hero-mini img {{ width:100%; height:100%; object-fit:cover; }}
 .float-card {{ position:absolute; background:#fff; border-radius:16px; box-shadow:var(--shadow); padding:14px 20px; display:flex; gap:12px; align-items:center; font-size:14px; font-weight:700; color:var(--teal); animation:floaty 6s ease-in-out infinite; z-index:4; }}
@@ -580,8 +581,8 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
       <div class="hero-blob">
         <span class="ph"><img src="{IMG['hero']}" alt="A smiling woman seated in her wheelchair, laughing" fetchpriority="high"></span>
         {BRUSH}
-        <span class="accent"></span>
       </div>
+      <span class="deco glow" style="left:4%;top:-26px;width:92px" data-px="-.02">{ARC_DOTS}</span>
       <div class="hero-mini"><img src="{IMG['hero2']}" alt="" loading="lazy"></div>
       <div class="float-card fc1">{icon(IC['home'], '#5d7610')}<span>SIL homes<small>Call for current vacancies</small></span></div>
       <div class="float-card fc2">{icon(IC['shield'], '#5d7610')}<span>Registered provider<small>Independently audited</small></span></div>
