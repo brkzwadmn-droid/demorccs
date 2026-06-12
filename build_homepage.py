@@ -105,8 +105,8 @@ BRUSH = ('<svg aria-hidden="true" focusable="false" class="brush" viewBox="0 0 7
          '<path pathLength="1" d="M166.751 520C127.072 413.486 37.8348 172.377 103.274 104.23C235.814 -33.7929 308.796 462.039 411.963 481.08C481.963 494 596.033 424.382 448.511 245.716C332.082 104.707 484.048 -5.82593 595.963 189C707.877 383.826 720 467.431 720 467.431" '
          'stroke="#c4d600" stroke-width="30" stroke-linecap="round"/></svg>')
 SCRIBBLE = ('<svg aria-hidden="true" focusable="false" class="scribble" viewBox="0 0 220 60" fill="none" preserveAspectRatio="none">'
-            '<path pathLength="1" d="M8 31 C11 11 58 3 110 3 C165 3 210 12 209 30 C208 48 160 57 107 57 C53 57 9 50 8 33 C7.5 18 34 8 62 6" '
-            'stroke="#a9c81e" stroke-width="5" stroke-linecap="round" opacity=".9"/></svg>')
+            '<path pathLength="1" d="M15 34 C12 14 56 3.5 109 3 C162 2.5 212 11 211 29 C210 46.5 164 58 106 57.5 C51 57 12 50 13 34 C14 21 47 10.5 96 9 C147 7.5 201 15 199 30 C197 44 154 52.5 104 52 C62 51.5 30 46 31 36" '
+            'stroke="#a9c81e" stroke-width="4.6" stroke-linecap="round" opacity=".92"/></svg>')
 QUOTE = '<svg aria-hidden="true" focusable="false" class="bigquote" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a3 3 0 0 0-3 3v7h7v-7H7c0-1.7 1.3-3 3-3zM21 7h-4a3 3 0 0 0-3 3v7h7v-7h-3c0-1.7 1.3-3 3-3z"/></svg>'
 
 def curve(prev_bg, next_fill, variant=1, flip=False):
@@ -294,7 +294,7 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }}
 .hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; position:relative; }}
 .hero h1 em {{ font-style:normal; color:var(--olive); position:relative; white-space:nowrap; }}
-.hero h1 em .scribble {{ position:absolute; left:-15%; top:-26%; width:124%; height:147%; }}
+.hero h1 em .scribble {{ position:absolute; left:-15%; top:-26%; width:131%; height:147%; transform:rotate(-.8deg); }}
 .hero .lead {{ margin-bottom:34px; }}
 .hero-cta {{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px; }}
 .hero-trust {{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; color:var(--mut); font-size:14px; font-weight:600; }}
