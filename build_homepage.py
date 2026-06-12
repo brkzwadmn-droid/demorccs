@@ -10,7 +10,7 @@ FAVICON = open('/tmp/rehoboth_favicon.txt').read().strip()
 NDIS_BADGE = open('/tmp/indis_badge.txt').read().strip()
 
 IMG = {
- 'hero':      'https://www.avivo.org.au/wp-content/uploads/2025/11/EDITED-RiftPhotography-AvivoDay1and2-144_min.webp',
+ 'hero':      'images/hero-participant.webp',
  'hero2':     'https://www.avivo.org.au/wp-content/uploads/2025/11/home-intro_min.webp',
  'sil_main':  'https://www.avivo.org.au/wp-content/uploads/2025/10/avivo-images-disability-paul-kenny-at-home-perth5.jpg',
  'sil_small': 'https://www.avivo.org.au/wp-content/uploads/2025/11/home-about-avivo_min.webp',
@@ -302,8 +302,8 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero-trust svg {{ width:17px; height:17px; }}
 .hero-visual {{ position:relative; z-index:1; }}
 .hero-blob {{ position:relative; width:100%; aspect-ratio:.94; }}
-.hero-blob .ph {{ position:absolute; inset:0; clip-path:url(#blobclip); overflow:hidden; z-index:2; }}
-.hero-blob .ph img {{ width:100%; height:100%; object-fit:cover; animation:kenburns 18s ease-in-out infinite alternate; }}
+.hero-blob .ph {{ position:absolute; inset:0; clip-path:url(#blobclip); overflow:hidden; z-index:2; background:radial-gradient(circle at 62% 24%, #f7fae9 0%, #edf3d6 55%, #e4ecc4 100%); }}
+.hero-blob .ph img {{ width:100%; height:100%; object-fit:cover; object-position:center 22%; mix-blend-mode:multiply; animation:kenburns 22s ease-in-out infinite alternate; }}
 .hero-blob .brush {{ position:absolute; inset:-7% -9%; width:118%; height:114%; z-index:1; opacity:.95; }}
 .hero-blob .accent {{ position:absolute; width:120px; height:120px; border-radius:46% 54% 60% 40%/50% 45% 55% 50%; background:var(--lime-bright); right:-16px; bottom:34px; z-index:-1; animation:floaty 7s ease-in-out infinite; }}
 .hero-mini {{ position:absolute; left:-34px; bottom:-30px; width:168px; height:168px; border-radius:50%; overflow:hidden; border:7px solid var(--cream); box-shadow:var(--shadow); z-index:3; animation:floaty 8s 1s ease-in-out infinite; }}
@@ -578,7 +578,7 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
     </div>
     <div class="hero-visual drawn">
       <div class="hero-blob">
-        <span class="ph"><img src="{IMG['hero']}" alt="A support worker and participant enjoying time together (illustrative image)" fetchpriority="high"></span>
+        <span class="ph"><img src="{IMG['hero']}" alt="A smiling woman seated in her wheelchair, laughing" fetchpriority="high"></span>
         {BRUSH}
         <span class="accent"></span>
       </div>
