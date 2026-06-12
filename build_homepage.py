@@ -59,7 +59,7 @@ BRUSH = ('<svg aria-hidden="true" focusable="false" class="brush" viewBox="0 0 7
          '<path pathLength="1" d="M166.751 520C127.072 413.486 37.8348 172.377 103.274 104.23C235.814 -33.7929 308.796 462.039 411.963 481.08C481.963 494 596.033 424.382 448.511 245.716C332.082 104.707 484.048 -5.82593 595.963 189C707.877 383.826 720 467.431 720 467.431" '
          'stroke="#c4d600" stroke-width="30" stroke-linecap="round"/></svg>')
 SCRIBBLE = ('<svg aria-hidden="true" focusable="false" class="scribble" viewBox="0 0 220 70" fill="none" preserveAspectRatio="none">'
-            '<path pathLength="1" d="M28 38 C56 14 178 8 196 26 C212 41 150 60 84 58 C36 57 18 46 34 32 C56 14 166 12 196 24" '
+            '<path pathLength="1" d="M26 42 C20 20 66 7 112 6 C168 5 209 19 207 35 C205 54 156 66 100 65 C52 64 25 56 24 44 C23 35 38 27 62 23" '
             'stroke="#a9c81e" stroke-width="6" stroke-linecap="round"/></svg>')
 QUOTE = '<svg aria-hidden="true" focusable="false" class="bigquote" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a3 3 0 0 0-3 3v7h7v-7H7c0-1.7 1.3-3 3-3zM21 7h-4a3 3 0 0 0-3 3v7h7v-7h-3c0-1.7 1.3-3 3-3z"/></svg>'
 
@@ -76,9 +76,9 @@ def curve(prev_bg, next_fill, variant=1, flip=False):
 def chk(t):
     return f'<li><span class="tick">{icon(IC["check"], "#5d7610")}</span>{t}</li>'
 
-TICKER_ITEMS = ['Supported Independent Living', 'Complex &amp; high-intensity care', 'Community nursing',
- 'Positive behaviour support', 'Respite &amp; STA', 'Psychosocial recovery', 'Travel &amp; transport',
- 'In-home support', 'Community participation', 'Support coordination']
+TICKER_ITEMS = ['Albury', 'Narooma', 'Crookwell', 'Penrith', 'Blacktown', 'Werrington', 'Blackheath',
+ 'Miranda', 'Parramatta', 'Liverpool', 'Campbelltown', 'Newcastle', 'Wollongong', 'Wagga Wagga',
+ 'Dubbo', 'Orange', 'Bathurst', 'Goulburn', 'Tamworth', 'Queanbeyan']
 ticker_half = ''.join(f'<span>{t}</span><i class="tsep">&#10022;</i>' for t in TICKER_ITEMS)
 
 SERVICES = [
@@ -93,7 +93,7 @@ SERVICES = [
  ('care-management-services.html', 'compass', 'Support coordination', 'We help you understand your plan, connect with providers and get the most from your funding.'),
 ]
 svc_cards = "".join(
- f'<a class="svc t{i%3+1} reveal" style="--d:{i*0.05:.2f}s" href="{href}">'
+ f'<a class="svc reveal" style="--d:{i*0.05:.2f}s" href="{href}">'
  f'<span class="svc-ic">{icon(IC[ic])}</span><h3>{t}</h3><p>{d}</p>'
  f'<span class="more">Learn more {icon(IC["arrow"], "currentColor")}</span></a>'
  for i, (href, ic, t, d) in enumerate(SERVICES))
@@ -120,7 +120,7 @@ WHY = [
  ('shield', 'Registered &amp; audited', 'A registered NDIS provider, independently audited against the NDIS Practice Standards.'),
  ('star', '10+ years of experience', 'More than a decade walking alongside participants and families across VIC, NSW and QLD.'),
  ('heart', 'Clinical expertise', 'Registered nurses lead our clinical care, with access to medical practitioners for complex needs.'),
- ('users', 'Complex-care trained team', 'Support workers trained in high-intensity supports, positive behaviour support and manual handling.'),
+ ('users', 'Complex-care trained team', 'Support workers trained in high-intensity supports and manual handling.'),
  ('car', 'Our own fleet', 'A fleet of our own vehicles, so transport never holds you back.'),
  ('clock', '24/7 on-call response', 'Real people answer around the clock, because support needs don&#8217;t keep office hours.'),
 ]
@@ -248,7 +248,7 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }}
 .hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; position:relative; }}
 .hero h1 em {{ font-style:normal; color:var(--olive); position:relative; white-space:nowrap; }}
-.hero h1 em .scribble {{ position:absolute; left:-7%; top:-16%; width:114%; height:136%; }}
+.hero h1 em .scribble {{ position:absolute; left:-10%; top:-32%; width:122%; height:164%; }}
 .hero .lead {{ margin-bottom:34px; }}
 .hero-cta {{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px; }}
 .hero-trust {{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; color:var(--mut); font-size:14px; font-weight:600; }}
@@ -276,7 +276,6 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 /* ticker */
 .ticker {{ background:var(--lime-bright); transform:rotate(-1.1deg) scale(1.03); position:relative; z-index:5; overflow:hidden; padding:15px 0; box-shadow:0 12px 30px rgba(169,200,30,.3); }}
 .ticker .track {{ display:flex; align-items:center; width:max-content; animation:marquee 38s linear infinite; }}
-.ticker:hover .track {{ animation-play-state:paused; }}
 .ticker span {{ font-weight:800; color:var(--teal); font-size:15.5px; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }}
 .ticker .tsep {{ color:var(--teal); font-style:normal; margin:0 22px; opacity:.65; }}
 @keyframes marquee {{ from {{ transform:translateX(0); }} to {{ transform:translateX(-50%); }} }}
@@ -333,12 +332,10 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .services {{ background:var(--sand); }}
 .svc-grid {{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:54px; }}
 .svc {{ border-radius:var(--r-md); padding:32px 30px; display:flex; flex-direction:column; gap:10px; border:1px solid rgba(14,58,64,.05); transition:transform .3s, box-shadow .3s; position:relative; background:#fff; }}
-.svc.t2 {{ background:var(--lime-pale); }}
 .svc:nth-child(3n+1) {{ transform:rotate(-.5deg); }}
 .svc:nth-child(3n+2) {{ transform:rotate(.45deg); }}
 .svc:hover {{ transform:rotate(0) translateY(-7px); box-shadow:var(--shadow); }}
 .svc-ic {{ width:56px; height:56px; border-radius:16px 18px 16px 4px; background:var(--lime-bright); display:flex; align-items:center; justify-content:center; margin-bottom:8px; box-shadow:0 6px 16px rgba(169,200,30,.35); }}
-.svc.t2 .svc-ic {{ background:#fff; }}
 .svc-ic svg {{ width:28px; height:28px; }}
 .svc h3 {{ font-size:19px; }}
 .svc p {{ color:var(--mut); font-size:14.5px; flex:1; }}
@@ -572,7 +569,7 @@ footer {{ background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }}
         <p class="lead">Our SIL homes are warm, modern and welcoming, with experienced support teams on site, backed by 24/7 on-call response. Whether you&#8217;re moving out for the first time or looking for a provider who really listens, we&#8217;ll help you make the move with confidence.</p>
         <ul class="sil-list">
           {chk('Support staff trained in high-intensity and complex care')}
-          {chk('Support workers trained in positive behaviour support; strategies implemented with dignity and respect')}
+          {chk('Our own vehicles for outings, appointments and community access')}
           {chk('Thoughtful housemate matching; your home should feel right')}
           {chk('Family and friends welcome, always')}
         </ul>
