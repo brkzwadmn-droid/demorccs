@@ -97,7 +97,7 @@ def duo(name, stroke='#0e3a40', fill='#c4d600'):
 SPARK = '<svg aria-hidden="true" focusable="false" class="spark" viewBox="0 0 24 24"><path d="M12 1c.8 6.2 4.8 10.2 11 11-6.2.8-10.2 4.8-11 11-.8-6.2-4.8-10.2-11-11C7.2 11.2 11.2 7.2 12 1Z" fill="currentColor"/></svg>'
 SPARK_S = SPARK.replace('class="spark"', 'class="spark s2"')
 SPARK_M = SPARK.replace('class="spark"', 'class="spark s3"')
-SQUIG = '<svg aria-hidden="true" focusable="false" viewBox="0 0 96 20" fill="none"><path d="M3 13 C11 3 19 3 27 13 C35 23 43 23 51 13 C59 3 67 3 75 13 C83 23 91 23 93 13" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>'
+SQUIG = '<svg aria-hidden="true" focusable="false" viewBox="0 0 96 24" fill="none"><path d="M3 12 C11 4 19 4 27 12 C35 20 43 20 51 12 C59 4 67 4 75 12 C83 20 91 20 93 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>'
 ARC_DOTS = '<svg aria-hidden="true" focusable="false" viewBox="0 0 120 60" fill="none"><path d="M6 54 C30 10 90 10 114 54" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.5 14"/></svg>'
 DOODLE_ARROW = '<svg aria-hidden="true" focusable="false" viewBox="0 0 110 70" fill="none"><path d="M6 8 C30 44 62 56 96 50" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M84 42 C89 46 93 48 98 50 C93 53 89 56 86 61" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 # Avivo's actual hero brush path (from the captured site), redrawn as a draw-on stroke
