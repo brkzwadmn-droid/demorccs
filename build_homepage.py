@@ -47,6 +47,52 @@ IC = {
  'person':'<circle cx="12" cy="8" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>',
 }
 
+
+# ── duotone professional icons (teal stroke + lime filled accents) ──
+def duo(name, stroke='#0e3a40', fill='#c4d600'):
+    P = {
+     'home': f"""<path d="M24 7 42 21v18a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V21L24 7Z" fill="{fill}" opacity=".9"/>
+       <path d="M24 7 42 21v18a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V21L24 7Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M19 42V30a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12" fill="#fff" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M16 4.5h6V11" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round" transform="translate(18 2) scale(.0001)"/>""",
+     'sun': f"""<circle cx="24" cy="26" r="8.5" fill="{fill}"/><circle cx="24" cy="26" r="8.5" fill="none" stroke="{stroke}" stroke-width="2.6"/>
+       <path d="M24 9v4M24 39v4M7 26h4M37 26h4M11.5 13.5l2.8 2.8M33.7 35.7l2.8 2.8M36.5 13.5l-2.8 2.8M14.3 35.7l-2.8 2.8" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round"/>""",
+     'moon': f"""<path d="M38 30.5A15 15 0 0 1 17.5 10 15.5 15.5 0 1 0 38 30.5Z" fill="{fill}"/>
+       <path d="M38 30.5A15 15 0 0 1 17.5 10 15.5 15.5 0 1 0 38 30.5Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M33 8.5l1 2.6 2.6 1-2.6 1-1 2.6-1-2.6-2.6-1 2.6-1Z" fill="{stroke}"/><circle cx="40" cy="18" r="1.7" fill="{stroke}"/>""",
+     'users': f"""<circle cx="30.5" cy="15" r="6" fill="{fill}"/><path d="M40 38c0-6.6-3.6-10.5-9.5-10.5-1.6 0-3 .3-4.3.8" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round"/>
+       <circle cx="30.5" cy="15" r="6" fill="none" stroke="{stroke}" stroke-width="2.6"/>
+       <circle cx="17" cy="18" r="7" fill="#fff" stroke="{stroke}" stroke-width="2.6"/>
+       <path d="M6 41c0-7.5 4.3-12 11-12s11 4.5 11 12" fill="{fill}" opacity=".85"/>
+       <path d="M6 41c0-7.5 4.3-12 11-12s11 4.5 11 12" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round"/>""",
+     'heartpulse': f"""<path d="M24 41C9.5 31.5 6 23.5 6 17.8 6 12 10.4 8 15.6 8c3.6 0 6.6 1.8 8.4 4.6C25.8 9.8 28.8 8 32.4 8 37.6 8 42 12 42 17.8c0 5.7-3.5 13.7-18 23.2Z" fill="{fill}"/>
+       <path d="M24 41C9.5 31.5 6 23.5 6 17.8 6 12 10.4 8 15.6 8c3.6 0 6.6 1.8 8.4 4.6C25.8 9.8 28.8 8 32.4 8 37.6 8 42 12 42 17.8c0 5.7-3.5 13.7-18 23.2Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M10 22h7l3-5.5 4.5 10L28 20h10" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>""",
+     'shieldplus': f"""<path d="M24 4.5 39 10v11.5C39 32 33 39.5 24 43.5 15 39.5 9 32 9 21.5V10L24 4.5Z" fill="{fill}"/>
+       <path d="M24 4.5 39 10v11.5C39 32 33 39.5 24 43.5 15 39.5 9 32 9 21.5V10L24 4.5Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M24 15v14M17 22h14" stroke="#fff" stroke-width="4.6" stroke-linecap="round"/><path d="M24 15v14M17 22h14" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round"/>""",
+     'chat': f"""<path d="M8 9h22a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H18l-8 7V13a4 4 0 0 1 4-4Z" transform="translate(-2 0)" fill="{fill}"/>
+       <path d="M8 9h22a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H18l-8 7V13a4 4 0 0 1 4-4Z" transform="translate(-2 0)" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="M38 20h2a3 3 0 0 1 3 3v18l-6-5h-9a3 3 0 0 1-3-3v-2" fill="#fff" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <circle cx="14" cy="18" r="1.8" fill="{stroke}"/><circle cx="21" cy="18" r="1.8" fill="{stroke}"/><circle cx="28" cy="18" r="1.8" fill="{stroke}"/>""",
+     'van': f"""<path d="M5 28V17a3 3 0 0 1 3-3h17l7 7h7a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2h-2.5" fill="{fill}"/>
+       <path d="M5 28v6h3.5M5 28V17a3 3 0 0 1 3-3h17l7 7h7a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2h-2.5M17.5 34h13" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+       <path d="M14 14v7h11" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <circle cx="13" cy="34.5" r="4" fill="#fff" stroke="{stroke}" stroke-width="2.6"/><circle cx="35" cy="34.5" r="4" fill="#fff" stroke="{stroke}" stroke-width="2.6"/>""",
+     'compass': f"""<circle cx="24" cy="24" r="18.5" fill="{fill}" opacity=".9"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="{stroke}" stroke-width="2.6"/>
+       <path d="m31.5 16.5-4.2 11-11 4.2 4.2-11 11-4.2Z" fill="#fff" stroke="{stroke}" stroke-width="2.4" stroke-linejoin="round"/>
+       <circle cx="24" cy="24" r="2" fill="{stroke}"/>""",
+     'shield': f"""<path d="M24 4.5 39 10v11.5C39 32 33 39.5 24 43.5 15 39.5 9 32 9 21.5V10L24 4.5Z" fill="{fill}"/>
+       <path d="M24 4.5 39 10v11.5C39 32 33 39.5 24 43.5 15 39.5 9 32 9 21.5V10L24 4.5Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>
+       <path d="m17 23 5 5 9.5-10" fill="none" stroke="{stroke}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>""",
+     'star': f"""<path d="M24 5.5 29.6 17l12.6 1.6-9.3 8.7 2.4 12.5L24 33.6l-11.3 6.2 2.4-12.5-9.3-8.7L18.4 17 24 5.5Z" fill="{fill}"/>
+       <path d="M24 5.5 29.6 17l12.6 1.6-9.3 8.7 2.4 12.5L24 33.6l-11.3 6.2 2.4-12.5-9.3-8.7L18.4 17 24 5.5Z" fill="none" stroke="{stroke}" stroke-width="2.6" stroke-linejoin="round"/>""",
+     'clock247': f"""<circle cx="24" cy="24" r="18.5" fill="{fill}"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="{stroke}" stroke-width="2.6"/>
+       <circle cx="24" cy="24" r="12" fill="#fff" stroke="{stroke}" stroke-width="2.4"/>
+       <path d="M24 17.5V24l4.5 3" fill="none" stroke="{stroke}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>""",
+    }
+    return ('<svg aria-hidden="true" focusable="false" viewBox="0 0 48 48" fill="none">' + P[name] + '</svg>')
+
 # ───────────────── decorative doodles ─────────────────
 SPARK = '<svg aria-hidden="true" focusable="false" class="spark" viewBox="0 0 24 24"><path d="M12 1c.8 6.2 4.8 10.2 11 11-6.2.8-10.2 4.8-11 11-.8-6.2-4.8-10.2-11-11C7.2 11.2 11.2 7.2 12 1Z" fill="currentColor"/></svg>'
 SPARK_S = SPARK.replace('class="spark"', 'class="spark s2"')
@@ -86,15 +132,15 @@ SERVICES = [
  ('in-home.html', 'sun', 'In-home support', 'Help with daily routines, personal care, meals, medication and household tasks, at home.'),
  ('carers-support.html', 'moon', 'Short Term Accommodation (STA)', 'Short stays and respite that give you new experiences, and give families and carers a break.'),
  ('social-and-community.html', 'users', 'Community participation', 'Get out, get involved and stay connected to the people and activities you love.'),
- ('disability-nursing.html', 'heart', 'Community nursing', 'Registered nurses delivering clinical care at home, from wound care to complex health needs.'),
- ('24-hour-care.html', 'pulse', 'Complex &amp; high-intensity care', 'Around-the-clock support from staff trained in high-intensity daily personal activities.'),
+ ('disability-nursing.html', 'heartpulse', 'Community nursing', 'Registered nurses delivering clinical care at home, from wound care to complex health needs.'),
+ ('24-hour-care.html', 'shieldplus', 'Complex &amp; high-intensity care', 'Around-the-clock support from staff trained in high-intensity daily personal activities.'),
  ('mental-health.html', 'chat', 'Psychosocial support', 'Recovery-oriented, person-centred support for psychosocial disability, at your pace.'),
- ('transport-services.html', 'car', 'Travel &amp; transport', 'Our own fleet gets you safely to appointments, work, study and community activities.'),
+ ('transport-services.html', 'van', 'Travel &amp; transport', 'Our own fleet gets you safely to appointments, work, study and community activities.'),
  ('care-management-services.html', 'compass', 'Support coordination', 'We help you understand your plan, connect with providers and get the most from your funding.'),
 ]
 svc_cards = "".join(
  f'<a class="svc reveal" style="--d:{i*0.05:.2f}s" href="{href}">'
- f'<span class="svc-ic">{icon(IC[ic])}</span><h3>{t}</h3><p>{d}</p>'
+ f'<span class="svc-ic">{duo(ic)}</span><h3>{t}</h3><p>{d}</p>'
  f'<span class="more">Learn more {icon(IC["arrow"], "currentColor")}</span></a>'
  for i, (href, ic, t, d) in enumerate(SERVICES))
 
@@ -119,13 +165,13 @@ who_pills = "".join(f'<span class="pill p{i%3+1} reveal" style="--d:{i*0.03:.2f}
 WHY = [
  ('shield', 'Registered &amp; audited', 'A registered NDIS provider, independently audited against the NDIS Practice Standards.'),
  ('star', '10+ years of experience', 'More than a decade walking alongside participants and families across VIC, NSW and QLD.'),
- ('heart', 'Clinical expertise', 'Registered nurses lead our clinical care, with access to medical practitioners for complex needs.'),
+ ('heartpulse', 'Clinical expertise', 'Registered nurses lead our clinical care, with access to medical practitioners for complex needs.'),
  ('users', 'Complex-care trained team', 'Support workers trained in high-intensity supports and manual handling.'),
- ('car', 'Our own fleet', 'A fleet of our own vehicles, so transport never holds you back.'),
- ('clock', '24/7 on-call response', 'Real people answer around the clock, because support needs don&#8217;t keep office hours.'),
+ ('van', 'Our own fleet', 'A fleet of our own vehicles, so transport never holds you back.'),
+ ('clock247', '24/7 on-call response', 'Real people answer around the clock, because support needs don&#8217;t keep office hours.'),
 ]
 why_cards = "".join(
- f'<div class="why reveal" style="--d:{i*0.06:.2f}s"><span class="why-ic">{icon(IC[ic], "#dff066")}</span>'
+ f'<div class="why reveal" style="--d:{i*0.06:.2f}s"><span class="why-ic">{duo(ic, "#eaf5ec", "#a9c81e")}</span>'
  f'<h3>{t}</h3><p>{d}</p></div>' for i, (ic, t, d) in enumerate(WHY))
 
 STEPS = [
@@ -267,10 +313,10 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .float-card small {{ display:block; font-weight:600; color:var(--mut); font-size:12px; }}
 .fc1 {{ right:-10px; bottom:10%; animation-delay:.6s; }}
 .fc2 {{ right:-8px; top:6%; animation-delay:1.4s; }}
-.hero .deco-squig {{ left:-10px; top:2px; width:84px; transform:rotate(-12deg); }}
+.hero .deco-squig {{ left:36px; top:14px; width:84px; transform:rotate(-10deg); }}
 .hero .deco-arc {{ right:6%; bottom:-12px; width:110px; }}
 .hero .hs1 {{ right:-4px; top:-22px; }}
-.hero .hs2 {{ right:-32px; top:10px; }}
+.hero .hs2 {{ right:-26px; top:12px; }}
 @media (max-width:920px) {{ .hero .wrap {{ grid-template-columns:1fr; }} .hero-visual {{ max-width:520px; margin:0 auto; }} .hero-mini {{ left:-8px; }} }}
 
 /* ticker */
@@ -323,7 +369,7 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hcard:hover .more svg, .svc:hover .more svg {{ transform:translateX(5px); }}
 .hcard:hover .more, .svc:hover .more {{ color:var(--olive); }}
 .sil-ctas {{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:48px; }}
-.sil .deco-spark1 {{ left:2%; top:7%; }}
+.sil .deco-spark1 {{ left:4%; top:7%; }}
 .sil .deco-spark2 {{ right:4%; top:52%; }}
 .sil .deco-arrow2 {{ width:90px; color:var(--lime); position:absolute; right:8%; top:-12px; transform:scaleX(-1) rotate(-6deg); }}
 @media (max-width:920px) {{ .sil-top {{ grid-template-columns:1fr; }} .sil-visual {{ max-width:540px; margin:30px auto 0; }} .sil-visual .mini {{ left:-8px; }} .hgrid {{ grid-template-columns:1fr; max-width:480px; margin:0 auto; }} .hcard {{ transform:none !important; }} .sil .deco-arrow2 {{ display:none; }} }}
@@ -335,11 +381,11 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .svc:nth-child(3n+1) {{ transform:rotate(-.5deg); }}
 .svc:nth-child(3n+2) {{ transform:rotate(.45deg); }}
 .svc:hover {{ transform:rotate(0) translateY(-7px); box-shadow:var(--shadow); }}
-.svc-ic {{ width:56px; height:56px; border-radius:16px 18px 16px 4px; background:var(--lime-bright); display:flex; align-items:center; justify-content:center; margin-bottom:8px; box-shadow:0 6px 16px rgba(169,200,30,.35); }}
-.svc-ic svg {{ width:28px; height:28px; }}
+.svc-ic {{ width:66px; height:66px; border-radius:20px; background:linear-gradient(140deg,#f4f8e4,#ffffff 70%); border:1px solid #e6ecd2; display:flex; align-items:center; justify-content:center; margin-bottom:10px; box-shadow:0 10px 22px rgba(14,58,64,.08); }}
+.svc-ic svg {{ width:36px; height:36px; }}
 .svc h3 {{ font-size:19px; }}
 .svc p {{ color:var(--mut); font-size:14.5px; flex:1; }}
-.services .deco-squig2 {{ right:5%; top:74px; width:88px; transform:rotate(8deg); }}
+.services .deco-squig2 {{ right:7%; top:80px; width:88px; transform:rotate(8deg); }}
 @media (max-width:920px) {{ .svc-grid {{ grid-template-columns:repeat(2,1fr); }} }}
 @media (max-width:620px) {{ .svc-grid {{ grid-template-columns:1fr; }} .svc {{ transform:none !important; }} }}
 
@@ -367,8 +413,8 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .why-grid {{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:54px; }}
 .why {{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:var(--r-md); padding:32px 30px; transition:.25s; }}
 .why:hover {{ background:rgba(255,255,255,.09); transform:translateY(-5px); }}
-.why-ic {{ width:54px; height:54px; border-radius:14px; background:rgba(196,214,0,.15); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }}
-.why-ic svg {{ width:27px; height:27px; }}
+.why-ic {{ width:62px; height:62px; border-radius:18px; background:rgba(223,240,102,.12); border:1px solid rgba(223,240,102,.22); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }}
+.why-ic svg {{ width:34px; height:34px; }}
 .why h3 {{ font-size:18.5px; margin-bottom:9px; }}
 .why p {{ color:#b9cfc6; font-size:14.5px; }}
 .why-s .deco-ring {{ position:absolute; right:-70px; bottom:-90px; width:260px; height:260px; border-radius:50%; border:30px solid rgba(196,214,0,.1); }}
