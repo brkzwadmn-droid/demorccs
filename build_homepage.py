@@ -105,7 +105,7 @@ BRUSH = ('<svg aria-hidden="true" focusable="false" class="brush" viewBox="0 0 7
          '<path pathLength="1" d="M166.751 520C127.072 413.486 37.8348 172.377 103.274 104.23C235.814 -33.7929 308.796 462.039 411.963 481.08C481.963 494 596.033 424.382 448.511 245.716C332.082 104.707 484.048 -5.82593 595.963 189C707.877 383.826 720 467.431 720 467.431" '
          'stroke="#c4d600" stroke-width="30" stroke-linecap="round"/></svg>')
 SCRIBBLE = ('<svg aria-hidden="true" focusable="false" class="scribble" viewBox="0 0 220 60" fill="none" preserveAspectRatio="none">'
-            '<path pathLength="1" d="M16 30 C20 12 64 4 112 4 C166 4 206 12 205 28 C204 46 158 57 106 57 C56 57 14 48 15 32 C16 18 40 9 70 7" '
+            '<path pathLength="1" d="M8 31 C11 11 58 3 110 3 C165 3 210 12 209 30 C208 48 160 57 107 57 C53 57 9 50 8 33 C7.5 18 34 8 62 6" '
             'stroke="#a9c81e" stroke-width="5" stroke-linecap="round" opacity=".9"/></svg>')
 QUOTE = '<svg aria-hidden="true" focusable="false" class="bigquote" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a3 3 0 0 0-3 3v7h7v-7H7c0-1.7 1.3-3 3-3zM21 7h-4a3 3 0 0 0-3 3v7h7v-7h-3c0-1.7 1.3-3 3-3z"/></svg>'
 
@@ -294,7 +294,7 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero .wrap {{ display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }}
 .hero h1 {{ font-size:clamp(38px,4.6vw,58px); margin:6px 0 22px; position:relative; }}
 .hero h1 em {{ font-style:normal; color:var(--olive); position:relative; white-space:nowrap; }}
-.hero h1 em .scribble {{ position:absolute; left:-6%; top:-14%; width:112%; height:128%; }}
+.hero h1 em .scribble {{ position:absolute; left:-15%; top:-26%; width:124%; height:147%; }}
 .hero .lead {{ margin-bottom:34px; }}
 .hero-cta {{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px; }}
 .hero-trust {{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; color:var(--mut); font-size:14px; font-weight:600; }}
