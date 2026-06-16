@@ -319,6 +319,19 @@ html:not(.js) .brush path, html:not(.js) .scribble path {{ stroke-dashoffset:0; 
 .hero .hs1 {{ right:-4px; top:-22px; }}
 .hero .hs2 {{ right:-26px; top:12px; }}
 @media (max-width:920px) {{ .hero .wrap {{ grid-template-columns:1fr; }} .hero-visual {{ max-width:520px; margin:0 auto; }} .hero-mini {{ left:-8px; }} }}
+@media (max-width:620px) {{
+  .hero {{ padding:36px 0 52px; }}
+  .hero::before {{ display:none; }}
+  .hero-cta {{ gap:12px; margin-bottom:28px; }}
+  .hero-cta .btn {{ flex:1 1 100%; justify-content:center; }}
+  .hero-trust {{ gap:12px 22px; }}
+  .hero-visual {{ max-width:340px; margin:4px auto 0; }}
+  .hero-visual::before {{ display:none; }}
+  .hero-blob::after {{ width:80px; height:80px; }}
+  .hero-mini {{ display:none; }}
+  .float-card {{ position:static; width:100%; margin:14px 0 0; right:auto; left:auto; top:auto; bottom:auto; animation:none; box-shadow:0 12px 28px rgba(14,58,64,.1); }}
+  .hero .deco-arc, .hero .deco-squig {{ display:none; }}
+}}
 
 /* ticker */
 .ticker {{ background:var(--lime-bright); transform:rotate(-1.1deg) scale(1.03); position:relative; z-index:5; overflow:hidden; padding:15px 0; box-shadow:0 12px 30px rgba(169,200,30,.3); }}
