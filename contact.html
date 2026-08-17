@@ -308,6 +308,8 @@ footer { background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }
 
 <script>
 (function () {
+  var ENDPOINT = 'https://hzkeruvkskhdaxhexiph.supabase.co/functions/v1/rehoboth-website-form';
+  var FALLBACK = 'https://formsubmit.co/ajax/1368b2d96e798027a464d5f689f2893d';
   document.querySelectorAll('form.rform').forEach(function (f) {
     f.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -318,17 +320,31 @@ footer { background:var(--teal-deep); color:#bdd2c9; font-size:14.5px; }
       btn.disabled = true;
       var data = {};
       new FormData(f).forEach(function (v, k) { data[k] = v; });
-      data._template = 'table';
-      data._captcha = 'false';
-      data._subject = f.getAttribute('data-subject') || 'Website enquiry';
-      fetch('https://formsubmit.co/ajax/1368b2d96e798027a464d5f689f2893d', {
+      var honey = data._honey || '';
+      delete data._honey;
+      var subj = f.getAttribute('data-subject') || 'Website enquiry';
+      var isReferral = subj.toLowerCase().indexOf('referral') !== -1;
+      var replyTo = data['Email'] || data['Referrer email'] || '';
+      function showOk() { ok.classList.add('show'); f.reset(); }
+      function showErr() { err.classList.add('show'); }
+      fetch(ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) { return r.json(); }).then(function (j) {
-        if (j && (j.success === 'true' || j.success === true)) { ok.classList.add('show'); f.reset(); }
-        else { err.classList.add('show'); }
-      }).catch(function () { err.classList.add('show'); })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: isReferral ? 'referral' : 'enquiry', replyTo: replyTo, _honey: honey, fields: data })
+      }).then(function (r) { return r.json().then(function (j) { return { okRes: r.ok, j: j }; }); })
+        .then(function (x) { if (x.okRes && x.j && x.j.success) { showOk(); } else { throw 0; } })
+        .catch(function () {
+          var fb = {};
+          Object.keys(data).forEach(function (k) { fb[k] = data[k]; });
+          fb._subject = subj; fb._template = 'table'; fb._captcha = 'false'; fb._honey = honey;
+          return fetch(FALLBACK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(fb)
+          }).then(function (r) { return r.json(); })
+            .then(function (j) { if (j && (j.success === 'true' || j.success === true)) { showOk(); } else { showErr(); } })
+            .catch(showErr);
+        })
         .finally(function () { btn.disabled = false; });
     });
   });
