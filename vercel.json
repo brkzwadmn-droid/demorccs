@@ -1,0 +1,11 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.rehoboth.com.au" }],
+      "destination": "https://rehoboth.com.au/:path*",
+      "permanent": true
+    }
+  ]
+}
