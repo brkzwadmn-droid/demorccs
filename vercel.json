@@ -3,8 +3,23 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.rehoboth.com.au" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.rehoboth.com.au"
+        }
+      ],
       "destination": "https://rehoboth.com.au/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/veterans.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/aged-care.html",
+      "destination": "/",
       "permanent": true
     }
   ]
