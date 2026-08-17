@@ -360,7 +360,22 @@ header.nav { view-transition-name: site-nav; }
   width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(9,43,48,.55); color: #fff;
   font-size: 15px; line-height: 1; cursor: pointer; display: none; }
 .callpill.show ~ .callpill-hide { display: block; }
+
+/* --- coverage checker --- */
+.covercheck { background:#fff; border:1.5px solid #e3e7d2; border-radius:var(--r-lg,22px); padding:30px 30px 26px; max-width:640px; margin:10px auto 0; box-shadow:0 10px 34px rgba(14,58,64,.08); }
+.covercheck h3 { margin:0 0 4px; color:var(--teal,#0e3a40); font-size:1.15rem; }
+.covercheck p.cc-sub { margin:0 0 16px; color:var(--mut,#5c6f6d); font-size:.93rem; }
+.cc-row { display:flex; gap:10px; }
+.cc-row input { flex:1; font:inherit; font-size:15.5px; padding:13px 16px; border:2px solid #e5dfd0; border-radius:999px; color:var(--ink,#15333a); background:#fff; min-width:0; }
+.cc-row input:focus { outline:none; border-color:var(--lime-bright,#c4d600); }
+.cc-result { display:none; margin-top:16px; background:var(--lime-pale,#eef3da); border-radius:14px; padding:15px 18px; font-size:.96rem; color:var(--ink,#15333a); }
+.cc-result.show { display:block; }
+.cc-result strong { color:var(--olive,#5d7610); }
+.cc-result .btns-mini { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
+html:not(.js) .covercheck { display:none; }
+@media (max-width:520px){ .cc-row { flex-direction:column; } }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Organization", "LocalBusiness"], "name": "Rehoboth Comprehensive Care Services", "legalName": "Community Regain Pty Ltd", "url": "https://rehoboth.com.au/", "logo": "https://rehoboth.com.au/images/og-image.jpg", "telephone": "+61 1300 853 095", "email": "info@rehoboth.com.au", "address": {"@type": "PostalAddress", "streetAddress": "78 William St", "addressLocality": "Werrington", "addressRegion": "NSW", "postalCode": "2747", "addressCountry": "AU"}, "areaServed": ["New South Wales", "Queensland", "Northern Territory", "Victoria"], "description": "Registered NDIS provider offering Supported Independent Living, in-home support, community nursing, complex care and support coordination.", "openingHours": "Mo-Fr 09:00-17:00"}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -392,7 +407,7 @@ header.nav { view-transition-name: site-nav; }
       <a href="resource-hub.html">Resources</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-teal" href="contact.html">Start your journey</a>
+      <a class="btn btn-teal" href="contact.html#enquiry">Start your journey</a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mmenu">&#9776;</button>
   </div>
@@ -421,7 +436,7 @@ header.nav { view-transition-name: site-nav; }
       <p class="lead">Rehoboth is a registered NDIS provider whose team brings more than 10 years of experience, supporting people with disability across New South Wales, Queensland, the Northern Territory and Victoria; at home, in the community and in our supported independent living homes across Sydney and the Blue Mountains.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="accommodation.html#vacancies">Explore SIL homes <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="contact.html">Talk to our team</a>
+        <a class="btn btn-ghost" href="contact.html#enquiry">Start your journey</a>
       </div>
       <div class="hero-trust">
         <span><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="#5d7610" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Registered NDIS provider</span>
@@ -431,11 +446,11 @@ header.nav { view-transition-name: site-nav; }
     </div>
     <div class="hero-visual drawn">
       <div class="hero-blob">
-        <span class="ph"><img src="images/hero-participant.webp" alt="A smiling woman seated in her wheelchair, laughing" fetchpriority="high"></span>
+        <span class="ph"><img src="images/hero-participant.webp" alt="A smiling woman seated in her wheelchair, laughing" fetchpriority="high" width="1358" height="1158"></span>
         <svg aria-hidden="true" focusable="false" class="brush" viewBox="0 0 720 560" fill="none" preserveAspectRatio="xMidYMid meet"><path pathLength="1" d="M166.751 520C127.072 413.486 37.8348 172.377 103.274 104.23C235.814 -33.7929 308.796 462.039 411.963 481.08C481.963 494 596.033 424.382 448.511 245.716C332.082 104.707 484.048 -5.82593 595.963 189C707.877 383.826 720 467.431 720 467.431" stroke="#c4d600" stroke-width="30" stroke-linecap="round"/></svg>
       </div>
       <span class="deco glow" style="left:4%;top:-26px;width:92px" data-px="-.02"><svg aria-hidden="true" focusable="false" viewBox="0 0 120 60" fill="none"><path d="M6 54 C30 10 90 10 114 54" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.5 14"/></svg></span>
-      <div class="hero-mini"><img src="images/hero-circle.webp" alt="A support worker and an older woman laughing together outdoors" loading="lazy"></div>
+      <div class="hero-mini"><img src="images/hero-circle.webp" alt="A support worker and an older woman laughing together outdoors" loading="lazy" width="1024" height="768"></div>
       <div class="float-card fc1"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="#5d7610" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>SIL homes<small>Call for current vacancies</small></span></div>
       <div class="float-card fc2"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="#5d7610" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg><span>Registered provider<small>Independently audited</small></span></div>
     </div>
@@ -479,8 +494,8 @@ header.nav { view-transition-name: site-nav; }
       </div>
       <div class="sil-visual reveal" style="--d:.15s">
         <span class="sticker">7 homes across NSW</span>
-        <div class="main"><img src="images/sil-living.jpg" alt="A person relaxing at home (illustrative image)" loading="lazy"></div>
-        <div class="mini"><img src="images/sil-about.webp" alt="A woman smiling as she wheels along a sunny street" loading="lazy"></div>
+        <div class="main"><img src="images/sil-living.webp" alt="A person relaxing at home (illustrative image)" loading="lazy" width="1920" height="1280"></div>
+        <div class="mini"><img src="images/sil-about.webp" alt="A woman smiling as she wheels along a sunny street" loading="lazy" width="1200" height="549"></div>
       </div>
     </div>
     <div class="center reveal" style="position:relative">
@@ -488,7 +503,7 @@ header.nav { view-transition-name: site-nav; }
       <h2 style="font-size:clamp(26px,3vw,38px)">Find your new home</h2>
       <span class="deco deco-arrow2"><svg aria-hidden="true" focusable="false" viewBox="0 0 110 70" fill="none"><path d="M6 8 C30 44 62 56 96 50" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 9"/><path d="M84 42 C89 46 93 48 98 50 C93 53 89 56 86 61" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </div>
-    <div class="hgrid" style="margin-top:44px"><a class="hcard reveal" style="--d:0.00s" href="accommodation.html#werrington-home"><div class="himg"><img src="images/featured-home-1.jpg" alt="A support worker braiding a young woman's hair at home" loading="lazy"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Werrington Home</h3><p>Wheelchair accessible · Private garden · Quiet neighbourhood</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="hcard reveal" style="--d:0.08s" href="accommodation.html#blacktown-home"><div class="himg"><img src="images/featured-home-2.jpg" alt="A man moving from his wheelchair onto his bed with support nearby" loading="lazy"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Blacktown Home</h3><p>4 bedrooms · Secure garage · Near Blacktown Hospital</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="hcard reveal" style="--d:0.16s" href="accommodation.html#blackheath-home"><div class="himg"><img src="images/featured-home-3.jpg" alt="Two women laughing together over a cup of tea at home" loading="lazy"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Blackheath Home</h3><p>Fully accessible · Modern double-storey · Blue Mountains</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div>
+    <div class="hgrid" style="margin-top:44px"><a class="hcard reveal" style="--d:0.00s" href="accommodation.html#werrington-home"><div class="himg"><img src="images/featured-home-1.webp" alt="A support worker braiding a young woman's hair at home" loading="lazy" width="1600" height="1067"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Werrington Home</h3><p>Wheelchair accessible · Private garden · Quiet neighbourhood</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="hcard reveal" style="--d:0.08s" href="accommodation.html#blacktown-home"><div class="himg"><img src="images/featured-home-2.webp" alt="A man moving from his wheelchair onto his bed with support nearby" loading="lazy" width="1600" height="1067"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Blacktown Home</h3><p>4 bedrooms · Secure garage · Near Blacktown Hospital</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a><a class="hcard reveal" style="--d:0.16s" href="accommodation.html#blackheath-home"><div class="himg"><img src="images/featured-home-3.webp" alt="Two women laughing together over a cup of tea at home" loading="lazy" width="1066" height="1600"><span class="badge-vac">Enquire about vacancies</span></div><div class="hbody"><h3>Blackheath Home</h3><p>Fully accessible · Modern double-storey · Blue Mountains</p><span class="more">View this home <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a></div>
     <div class="sil-ctas reveal">
       <a class="btn btn-teal" href="accommodation.html#vacancies">See all 7 homes <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn-ghost" href="refer-to-us.html">Make a referral</a>
@@ -535,7 +550,7 @@ header.nav { view-transition-name: site-nav; }
 <section class="who">
   <div class="wrap">
     <div class="who-imgwrap reveal">
-      <div class="who-img"><img src="images/community-connection.jpg" alt="A person smiling while patting a horse (illustrative image)" loading="lazy"></div>
+      <div class="who-img"><img src="images/community-connection.webp" alt="A person smiling while patting a horse (illustrative image)" loading="lazy" width="1300" height="1181"></div>
       <span class="sp1"><svg aria-hidden="true" focusable="false" class="spark" viewBox="0 0 24 24"><path d="M12 1c.8 6.2 4.8 10.2 11 11-6.2.8-10.2 4.8-11 11-.8-6.2-4.8-10.2-11-11C7.2 11.2 11.2 7.2 12 1Z" fill="currentColor"/></svg></span>
       <span class="sp2"><svg aria-hidden="true" focusable="false" class="spark s3" viewBox="0 0 24 24"><path d="M12 1c.8 6.2 4.8 10.2 11 11-6.2.8-10.2 4.8-11 11-.8-6.2-4.8-10.2-11-11C7.2 11.2 11.2 7.2 12 1Z" fill="currentColor"/></svg></span>
     </div>
@@ -613,7 +628,7 @@ header.nav { view-transition-name: site-nav; }
 </section>
 
 <section class="mission">
-  <div class="bg"><img src="images/workforce-team.jpg" alt="A support worker and participant enjoying a day out together" loading="lazy"></div>
+  <div class="bg"><img src="images/workforce-team.jpg" alt="A support worker and participant enjoying a day out together" loading="lazy" width="850" height="567"></div>
   <div class="wrap">
     <svg aria-hidden="true" focusable="false" class="bigquote" viewBox="0 0 24 24" fill="currentColor"><path d="M10 7H6a3 3 0 0 0-3 3v7h7v-7H7c0-1.7 1.3-3 3-3zM21 7h-4a3 3 0 0 0-3 3v7h7v-7h-3c0-1.7 1.3-3 3-3z"/></svg>
     <span class="hand reveal">Our promise to you</span>
@@ -624,6 +639,17 @@ header.nav { view-transition-name: site-nav; }
   </div>
 </section>
 
+<section class="sect"><div class="wrap">
+<div class="covercheck reveal" id="covercheck-home">
+  <h3>Do we cover your area?</h3>
+  <p class="cc-sub">Type your suburb or postcode and find out in a second.</p>
+  <form class="cc-row" data-cc>
+    <label class="sr-only" for="cc-in-home" style="position:absolute;left:-9999px">Your suburb or postcode</label>
+    <input id="cc-in-home" type="text" name="suburb" autocomplete="postal-code" placeholder="e.g. Penrith or 2747" maxlength="40">
+    <button type="submit" class="btn btn-teal"><span class="link-text">Check</span></button>
+  </form>
+  <div class="cc-result" role="status"></div>
+</div></div></section>
 <section class="cta" id="contact">
   <div class="wrap">
     <div class="cta-box reveal">
@@ -635,7 +661,7 @@ header.nav { view-transition-name: site-nav; }
       </div>
       <div class="cta-actions">
         <a class="btn btn-white btn-pulse" href="tel:1300853095"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 1300 853 095</a>
-        <a class="btn btn-teal" href="contact.html#enquiry">Send an enquiry</a>
+        <a class="btn btn-teal" href="contact.html#enquiry">Start your journey</a>
       </div>
     </div>
   </div>
@@ -749,5 +775,22 @@ header.nav { view-transition-name: site-nav; }
   }
 })();
 </script>
-</body>
+
+<script>
+(function(){
+  document.querySelectorAll('form[data-cc]').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = f.querySelector('input').value.trim().replace(/[<>"&]/g,'').slice(0,40);
+      var out = f.parentElement.querySelector('.cc-result');
+      if (!v) { out.innerHTML = 'Type your suburb or postcode above and we\u2019ll check it for you.'; out.classList.add('show'); return; }
+      var nice = v.replace(/\w\S*/g, function(w){ return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
+      out.innerHTML = '<strong>Yes \u2014 we can support you in ' + nice + '.</strong> Call us or send an enquiry and we\u2019ll ring you back within one business day.' +
+        '<div class="btns-mini"><a class="btn btn-teal" href="tel:1300853095"><span class="link-text">Call 1300 853 095</span></a>' +
+        '<a class="btn btn-ghost" href="contact.html#enquiry"><span class="link-text">Start your journey</span></a></div>';
+      out.classList.add('show');
+    });
+  });
+})();
+</script></body>
 </html>
