@@ -220,7 +220,7 @@ details.faq .fa-body { padding:0 20px 16px; font-size:.94rem; color:var(--mut,#5
 .cc-result .btns-mini { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
 html:not(.js) .covercheck { display:none; }
 @media (max-width:520px){ .cc-row { flex-direction:column; } }
-</style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Organization", "LocalBusiness"], "name": "Rehoboth Comprehensive Care Services", "legalName": "Community Regain Pty Ltd", "url": "https://rehoboth.com.au/", "logo": "https://rehoboth.com.au/images/og-image.jpg", "telephone": "+61 1300 853 095", "email": "info@rehoboth.com.au", "address": {"@type": "PostalAddress", "streetAddress": "78 William St", "addressLocality": "Werrington", "addressRegion": "NSW", "postalCode": "2747", "addressCountry": "AU"}, "areaServed": ["New South Wales", "Queensland", "Northern Territory", "Victoria"], "description": "Registered NDIS provider offering Supported Independent Living, in-home support, community nursing, complex care and support coordination.", "openingHours": "Mo-Fr 09:00-17:00"}</script>
 </head>
 <body>
@@ -291,7 +291,7 @@ html:not(.js) .covercheck { display:none; }
     </select>
     <label for="c-msg">Message <span class="req">*</span></label>
     <textarea name="Message" id="c-msg" required></textarea>
-    <label class="consent"><input type="checkbox" required> I have read the <a href="privacy-policy.html">privacy policy</a> and understand how my information will be collected, used and stored.</label>
+    <label class="consent"><input type="checkbox" required> I have read the <a href="privacy-policy.html" target="_blank" rel="noopener">privacy policy<span class="sr-only"> (opens in a new tab)</span></a> and understand how my information will be collected, used and stored.</label>
     <div class="fbtn"><button type="submit" class="btn btn-teal"><span class="link-text">Send enquiry</span></button></div>
     <p class="fmsg fmsg-ok" role="status"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path pathLength="1" d="M4 12.5 10 18.5 20 6" stroke="#5d7610" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Thank you — your enquiry has been sent. We’ll be in touch within one business day.</p>
     <p class="fmsg fmsg-err" role="alert">Sorry, something went wrong sending your message. Please call <a href="tel:1300853095">1300 853 095</a> or email <a href="mailto:info@rehoboth.com.au">info@rehoboth.com.au</a>.</p>
